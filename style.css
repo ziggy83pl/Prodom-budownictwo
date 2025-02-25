@@ -1,0 +1,315 @@
+/* Podstawowe style */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    background-color: #333;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border: 1px red solid;
+    background-color: #6c757d;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-left: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Hamburger menu styles */
+.burger {
+    display: none;
+    cursor: pointer;
+    font-size: 2em;
+    padding: 10px;
+}
+.navbar {
+    background-color: #6c757d !important; /* Light gray background */
+}
+.navbar-nav .nav-item {
+    display: flex;
+    align-items: center;
+}
+.navbar-nav .nav-item .nav-link {
+    white-space: nowrap; /* Prevent text from wrapping */
+    display: inline-block; /* Ensure the text stays in a line */
+    vertical-align: middle; /* Align the text vertically in the middle */
+}
+nav ul.show {
+    display: block;
+}
+.bg-light {
+    background-color: #6c757d !important; /* Light gray background */
+}
+
+/* Hero section */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background-color: #6c757d;
+    color: #000000; /* White text color */
+    background: url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+.hero button {
+    background-color: #ffc107;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Sekcje */
+section {
+    padding: 40px 20px;
+}
+
+.about-us, .services, .contact, .social-media {
+    text-align: center;
+}
+
+#about-us, #services, #contact, #social-media {
+    background-color: #6c757d;
+    color: #ffffff; /* White text color */
+    padding-left: 20px;
+    padding-right: 20px;
+    border-left: 20px solid #333; /* Simulate left padding color */
+    border-right: 20px solid #333; /* Simulate right padding color */
+}
+
+#about-us .nav-link, #services .nav-link {
+    color: #ffffff; /* White text color */
+    font-size: 1.2rem; /* Increase font size */
+}
+
+#about-us .nav-item .nav-link, #services .nav-item .nav-link {
+    color: #ffffff; /* White text color */
+    font-size: 1.2rem; /* Increase font size */
+}
+
+.service {
+    margin-bottom: 20px;
+}
+
+.service h3 {
+    font-size: 2.5rem;
+}
+
+.service p {
+    font-size: 1.5rem;
+}
+
+/* Gallery styles */
+.carousel-inner img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.col-md-3 img {
+    width: 100%;
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Ensure the image covers the entire area */
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+#about-us h2 {
+    font-size: 2.5rem;
+}
+
+#about-us p {
+    font-size: 1.5rem;
+}
+
+#contact, #social-media {
+    background: url('images/beton.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+#contact h2, #social-media h2 {
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+
+#contact p,h2, #social-media p,h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    font-weight: bold; /* Make the text bold */
+    /* text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); Add a light white shadow */
+}
+
+#contact a, #social-media a {
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+.nav-link {
+    color: #333;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .logo img {
+        display: none; /* Ukryj logo na urządzeniach mobilnych */
+        width: 50%; /* Adjust the width for small devices */
+        display: block; /* Ensure the logo is displayed */
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav li {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .hero {
+        padding: 50px 20px;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .services {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service {
+        width: auto;
+    }
+
+    #contact p,h2, #social-media p, h2 {
+        background: none; /* Remove background image */
+        
+    }
+
+    .logo img {
+        width: 50%; /* Adjust the width for small devices */
+        display: block; /* Ensure the logo is displayed */
+    }
+
+    .navbar-nav {
+        padding-right: 50px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .logo img {
+        width: 15%; /* Zwęż logo o 20% na dużych ekranach */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 0.9em;
+    }
+
+    .hero button {
+        padding: 10px 20px;
+    }
+
+    .logo img {
+        width: 30%; /* Further adjust the width for very small devices */
+        display: block; /* Ensure the logo is displayed */
+    }
+
+    #contact a {
+        font-size: 2rem; /* Adjust the font size for very small devices */
+        word-wrap: break-word; /* Ensure the text wraps within the container */
+    }
+
+    .navbar-nav {
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 2387px) {
+    .navbar-nav .nav-item {
+        display: flex;
+        align-items: center;
+    }
+}
+@media (max-width: 992px) {
+    .navbar-nav .nav-item {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.custom-navbar {
+    background: url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000000 !important; /* White text color */
+    font-size: 1.5rem !important; /* Increase font size */
+}
+
+.navbar-nav {
+    padding-right: 70px;
+}
