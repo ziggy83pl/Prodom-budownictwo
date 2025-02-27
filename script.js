@@ -29,23 +29,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Share button functionality
-    const shareButton = document.getElementById('share-button');
-    shareButton.addEventListener('click', function() {
-        if (navigator.share) {
+     const shareButton = document.getElementById('share-button');
+            shareButton.addEventListener('click', function() {
+            if (navigator.share) {
             navigator.share({
-                title: 'Prodom Budownictwo',
-                text: 'Sprawdź Prodom Budownictwo - kompleksowe usługi budowlane!',
-                url: window.location.href
+            title: 'Prodom Budownictwo',
+            text: 'Sprawdź Prodom Budownictwo - kompleksowe usługi budowlane!',
+            url: window.location.href
             }).then(() => {
-                console.log('Udostępniono pomyślnie');
+            console.log('Udostępniono pomyślnie');
             }).catch((error) => {
-                console.error('Błąd podczas udostępniania', error);
+            console.error('Błąd podczas udostępniania', error);
+            alert('Wystąpił błąd podczas udostępniania. Spróbuj ponownie.');
             });
-        } else {
-            alert('Twoje urządzenie nie obsługuje funkcji udostępniania.');
+           } else {
+        // Alternatywna metoda dla przeglądarek bez wsparcia navigator.share
+        const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+        window.open(shareUrl, '_blank');
         }
-    });
+     });
 
     // Scroll to contact section
     document.getElementById('contact-button').addEventListener('click', function() {
