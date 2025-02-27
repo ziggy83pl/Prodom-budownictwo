@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const links = document.querySelectorAll('nav a');
     links.forEach(link => {
         link.addEventListener('click', function(e) {
+            // Ignoruj linki z href zaczynającym się od "tel:"
+            if (this.getAttribute('href').startsWith('tel:')) {
+                return; // Nie blokuj domyślnego zachowania dla linków telefonicznych
+            }
+
+            // Blokuj domyślne zachowanie tylko dla linków wewnętrznych
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
             const targetSection = document.getElementById(targetId);
@@ -29,25 +35,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-     const shareButton = document.getElementById('share-button');
-            shareButton.addEventListener('click', function() {
-            if (navigator.share) {
+    // Share button functionality
+    const shareButton = document.getElementById('share-button');
+    shareButton.addEventListener('click', function() {
+        if (navigator.share) {
             navigator.share({
-            title: 'Prodom Budownictwo',
-            text: 'Sprawdź Prodom Budownictwo - kompleksowe usługi budowlane!',
-            url: window.location.href
+                title: 'Prodom Budownictwo',
+                text: 'Sprawdź Prodom Budownictwo - kompleksowe usługi budowlane!',
+                url: window.location.href
             }).then(() => {
-            console.log('Udostępniono pomyślnie');
+                console.log('Udostępniono pomyślnie');
             }).catch((error) => {
-            console.error('Błąd podczas udostępniania', error);
-            alert('Wystąpił błąd podczas udostępniania. Spróbuj ponownie.');
+                console.error('Błąd podczas udostępniania', error);
             });
-           } else {
-        // Alternatywna metoda dla przeglądarek bez wsparcia navigator.share
-        const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
-        window.open(shareUrl, '_blank');
+        } else {
+            alert('Twoje urządzenie nie obsługuje funkcji udostępniania.');
         }
-     });
+    });
 
     // Scroll to contact section
     document.getElementById('contact-button').addEventListener('click', function() {
