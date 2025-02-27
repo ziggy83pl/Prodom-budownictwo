@@ -199,6 +199,13 @@ footer {
     text-decoration: underline;
 }
 
+/* Styl dla ikony Facebooka */
+.social-media img.facebook-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 30%;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
     .logo img {
@@ -250,6 +257,11 @@ footer {
 
     .navbar-nav {
         padding-right: 50px;
+    }
+
+    .social-media img.facebook-icon {
+        width: 32px;
+        height: 32px;
     }
 }
 
@@ -312,4 +324,8 @@ footer {
 
 .navbar-nav {
     padding-right: 70px;
+}
+
+a[href^="tel:"] {
+    pointer-events: auto !important; /* Upewnij się, że link jest klikalny */
 }
