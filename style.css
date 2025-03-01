@@ -105,7 +105,7 @@ section {
     text-align: center;
 }
 
-#about-us, #services, #contact, #social-media {
+#about-us, #services, #contact, #social-media, #our-clients {
     background-color: #6c757d;
     color: #ffffff; /* White text color */
     padding-left: 20px;
@@ -166,7 +166,7 @@ footer {
     font-size: 1.5rem;
 }
 
-#contact, #social-media {
+#contact, #social-media, #our-clients {
     background: url('logo/beton.webp') no-repeat center center fixed;
     background-size: cover;
 }
@@ -197,6 +197,11 @@ footer {
 .nav-link:hover {
     color: #000;
     text-decoration: underline;
+}
+
+.nav-link {
+    pointer-events: auto; /* Upewnij się, że link jest klikalny */
+    cursor: pointer; /* Pokazuje ikonę kursora wskazującego na link */
 }
 
 /* Styl dla ikony Facebooka */
@@ -320,6 +325,64 @@ footer {
 .navbar-light .navbar-nav .nav-link {
     color: #000000 !important; /* White text color */
     font-size: 1.5rem !important; /* Increase font size */
+}
+
+.navbar-nav {
+    padding-right: 70px;
+}
+
+a[href^="tel:"] {
+    pointer-events: auto !important; /* Upewnij się, że link jest klikalny */
+}
+
+/* Sekcja "Nasi Klienci" */
+.our-clients {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #f8f9fa; /* Jasne tło */
+}
+
+.our-clients h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.client-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Odstęp między logo */
+}
+
+.client-logo {
+    flex: 1 1 calc(25% - 40px); /* 4 logo w rzędzie na dużych ekranach */
+    max-width: 100px; /* Maksymalna szerokość logo */
+    text-align: center;
+}
+
+.client-logo img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border-radius: 10px; /* Zaokrąglone rogi */
+    transition: transform 0.3s ease; /* Efekt hover */
+}
+
+.client-logo img:hover {
+    transform: scale(1.1); /* Powiększenie logo po najechaniu */
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .client-logo {
+        flex: 1 1 calc(50% - 20px); /* 2 logo w rzędzie na tabletach */
+    }
+}
+
+@media (max-width: 480px) {
+    .client-logo {
+        flex: 1 1 100%; /* 1 logo w rzędzie na telefonach */
+    }
 }
 
 .navbar-nav {
