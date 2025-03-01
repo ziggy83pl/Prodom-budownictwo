@@ -23,6 +23,10 @@ nav {
     border-radius: 50%;
     border: 1px red solid;
     background-color: #6c757d;
+    transition: transform 0.3s ease; /* Efekt hover */
+}
+.logo img:hover {
+    transform: scale(+1.1); /* Powiększenie logo po najechaniu */
 }
 
 nav ul {
@@ -51,7 +55,7 @@ nav a {
 .navbar {
     background-color: #6c757d !important; /* Light gray background */
 }
-.navbar-nav .nav-item {
+.navbar-nav .em {
     display: flex;
     align-items: center;
 }
@@ -59,6 +63,13 @@ nav a {
     white-space: nowrap; /* Prevent text from wrapping */
     display: inline-block; /* Ensure the text stays in a line */
     vertical-align: middle; /* Align the text vertically in the middle */
+    
+}
+.nav-item{
+    transition: transform 0.3s ease; /* Efekt hover */
+}
+.nav-item:hover {
+    transform: scale(1.1); /* Powiększenie logo po najechaniu */
 }
 nav ul.show {
     display: block;
@@ -209,6 +220,10 @@ footer {
     width: 50px;
     height: 50px;
     border-radius: 30%;
+    transition: transform 0.3s ease; /* Efekt hover */
+}
+.social-media img.facebook-icon:hover{
+    transform: scale(1.1); /* Powiększenie logo po najechaniu */
 }
 
 /* Media Queries */
@@ -335,7 +350,7 @@ a[href^="tel:"] {
     pointer-events: auto !important; /* Upewnij się, że link jest klikalny */
 }
 
-/* Sekcja "Nasi Klienci" */
+/* Sekcja "Zaufali nam" */
 .our-clients {
     padding: 40px 20px;
     text-align: center;
@@ -383,12 +398,4 @@ a[href^="tel:"] {
     .client-logo {
         flex: 1 1 100%; /* 1 logo w rzędzie na telefonach */
     }
-}
-
-.navbar-nav {
-    padding-right: 70px;
-}
-
-a[href^="tel:"] {
-    pointer-events: auto !important; /* Upewnij się, że link jest klikalny */
 }
