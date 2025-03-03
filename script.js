@@ -105,4 +105,109 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize the carousel
     $('.carousel').carousel();
+
+    // Kalkulator powierzchni stropu
+    const calculateAreaButton = document.getElementById('calculate-area-button');
+    const lengthInput = document.getElementById('length');
+    const widthInput = document.getElementById('width');
+    const totalAreaSpan = document.getElementById('total-area');
+
+    calculateAreaButton.addEventListener('click', function() {
+        const length = parseFloat(lengthInput.value);
+        const width = parseFloat(widthInput.value);
+
+        // Walidacja
+        if (isNaN(length) || isNaN(width) || length <= 0 || width <= 0) {
+            alert('Proszę wpisać poprawne wartości długości i szerokości (większe niż 0).');
+            return;
+        }
+
+        const totalArea = length * width;
+        totalAreaSpan.textContent = totalArea.toFixed(2);
+    });
+
+    // Kalkulator objętości betonu
+    const calculateVolumeButton = document.getElementById('calculate-volume-button');
+    const volumeLengthInput = document.getElementById('volume-length');
+    const volumeWidthInput = document.getElementById('volume-width');
+    const volumeHeightInput = document.getElementById('volume-height');
+    const totalVolumeSpan = document.getElementById('total-volume');
+
+    calculateVolumeButton.addEventListener('click', function() {
+        const length = parseFloat(volumeLengthInput.value);
+        const width = parseFloat(volumeWidthInput.value);
+        const height = parseFloat(volumeHeightInput.value);
+
+        // Walidacja
+        if (isNaN(length) || isNaN(width) || isNaN(height) || length <= 0 || width <= 0 || height <= 0) {
+            alert('Proszę wpisać poprawne wartości długości, szerokości i wysokości (większe niż 0).');
+            return;
+        }
+
+        const totalVolume = length * width * height;
+        totalVolumeSpan.textContent = totalVolume.toFixed(2);
+    });
+
+    // Kalkulator stali
+    const calculateSteelButton = document.getElementById('calculate-steel-button');
+    const stropLengthInput = document.getElementById('strop-length');
+    const stropWidthInput = document.getElementById('strop-width');
+    const rozstawPretowInput = document.getElementById('rozstaw-pretow');
+    const srednicaPretaSelect = document.getElementById('srednica-preta');
+    const liczbaWarstwInput = document.getElementById('liczba-warstw');
+    const dlugoscZakladuInput = document.getElementById('dlugosc-zakladu');
+    const totalSteelSpan = document.getElementById('total-steel');
+
+    calculateSteelButton.addEventListener('click', function() {
+        const stropLength = parseFloat(stropLengthInput.value);
+        const stropWidth = parseFloat(stropWidthInput.value);
+        const rozstawPretow = parseFloat(rozstawPretowInput.value);
+        const srednicaPreta = parseFloat(srednicaPretaSelect.value);
+        const liczbaWarstw = parseFloat(liczbaWarstwInput.value);
+        const dlugoscZakladu = parseFloat(dlugoscZakladuInput.value);
+
+        if (isNaN(stropLength) || isNaN(stropWidth) || isNaN(rozstawPretow) || isNaN(srednicaPreta) || isNaN(liczbaWarstw) || isNaN(dlugoscZakladu)) {
+            alert('Proszę wpisać poprawne wartości.');
+            return;
+        }
+
+        // Obliczenia
+        const liczbaPretow = (stropLength * 100 / rozstawPretow) + 1;
+        const dlugoscPreta = stropWidth + (2 * (dlugoscZakladu / 100)); // Przeliczamy zakłady na metry
+        const calkowitaDlugoscStali = liczbaPretow * dlugoscPreta;
+        const masaStali = calkowitaDlugoscStali * srednicaPreta;
+        const calkowitaMasaStali = masaStali * liczbaWarstw;
+
+        totalSteelSpan.textContent = calkowitaMasaStali.toFixed(2);
+    });
+
+    // Generowanie kodu QR
+    const qrCodeContainer = document.getElementById('qr-code');
+    if (qrCodeContainer) {
+        const currentUrl = window.location.href; // Bieżący adres URL strony
+        new QRCode(qrCodeContainer, {
+            text: currentUrl,
+            width: 100,
+            height: 100,
+        });
+    }
+
+    // Sprawdź, czy strona jest otwarta na urządzeniu mobilnym
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        // Wyświetl monit o zapisanie strony na ekranie głównym
+        const promptText = "Czy chcesz zapisać tę stronę na ekranie głównym?";
+        if (confirm(promptText)) {
+            // Dodaj stronę do ekranu głównego (PWA)
+            if ('serviceWorker' in navigator && 'BeforeInstallPromptEvent' in window) {
+                window.addEventListener('beforeinstallprompt', (event) => {
+                    event.preventDefault();
+                    event.prompt();
+                });
+            } else {
+                alert("Twoja przeglądarka nie obsługuje tej funkcji.");
+            }
+        }
+    }
 });
