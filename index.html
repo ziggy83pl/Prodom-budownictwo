@@ -21,6 +21,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXK83XGTXB"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -123,6 +124,79 @@ gtag('config', 'G-KXK83XGTXB');
             </p>
             <button id="share-button" class="btn btn-secondary">Udostępnij</button>
         </section>
+        <!-- Sekcja kalkulatorów -->
+<section id="calculators" class="calculator-section">
+    <div class="container">
+        <div class="row">
+            <!-- Kolumna 1: Kalkulator powierzchni stropu -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="calculator">
+                    <h3>Kalkulator powierzchni stropu</h3>
+                    <label for="length">Długość stropu (m):</label>
+                    <input type="number" class="form-control" id="length" placeholder="Wpisz długość" min="0.01" step="0.01" required>
+
+                    <label for="width">Szerokość stropu (m):</label>
+                    <input type="number" class="form-control" id="width" placeholder="Wpisz szerokość" min="0.01" step="0.01" required>
+
+                    <button id="calculate-area-button" class="btn btn-primary mt-3">Oblicz powierzchnię</button>
+
+                    <p class="mt-3">Całkowita powierzchnia stropu: <span id="total-area">0</span> m²</p>
+                </div>
+            </div>
+
+            <!-- Kolumna 2: Kalkulator objętości betonu -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="calculator">
+                    <h3>Kalkulator objętości betonu</h3>
+                    <label for="volume-length">Długość (m):</label>
+                    <input type="number" class="form-control" id="volume-length" placeholder="Wpisz długość" min="0.01" step="0.01" required>
+
+                    <label for="volume-width">Szerokość (m):</label>
+                    <input type="number" class="form-control" id="volume-width" placeholder="Wpisz szerokość" min="0.01" step="0.01" required>
+
+                    <label for="volume-height">Wysokość (m):</label>
+                    <input type="number" class="form-control" id="volume-height" placeholder="Wpisz wysokość" min="0.01" step="0.01" required>
+
+                    <button id="calculate-volume-button" class="btn btn-primary mt-3">Oblicz objętość</button>
+
+                    <p class="mt-3">Objętość betonu: <span id="total-volume">0</span> m³</p>
+                </div>
+            </div>
+
+            <!-- Kolumna 3: Kalkulator ilości stali -->
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="calculator">
+                    <h3>Kalkulator ilości stali</h3>
+                    <label for="strop-length">Długość stropu (m):</label>
+                    <input type="number" class="form-control" id="strop-length" placeholder="Wpisz długość" min="0.01" step="0.01" required>
+
+                    <label for="strop-width">Szerokość stropu (m):</label>
+                    <input type="number" class="form-control" id="strop-width" placeholder="Wpisz szerokość" min="0.01" step="0.01" required>
+
+                    <label for="rozstaw-pretow">Rozstaw prętów (cm):</label>
+                    <input type="number" class="form-control" id="rozstaw-pretow" placeholder="Wpisz rozstaw" min="5" step="1" required>
+
+                    <label for="srednica-preta">Średnica pręta (mm):</label>
+                    <select class="form-control" id="srednica-preta" required>
+                        <option value="0.395">8 mm</option>
+                        <option value="0.617">10 mm</option>
+                        <option value="0.888">12 mm</option>
+                    </select>
+
+                    <label for="liczba-warstw">Liczba warstw zbrojenia:</label>
+                    <input type="number" class="form-control" id="liczba-warstw" placeholder="Wpisz liczbę warstw" min="1" step="1" required>
+
+                    <label for="dlugosc-zakladu">Długość zakładów (cm):</label>
+                    <input type="number" class="form-control" id="dlugosc-zakladu" placeholder="Wpisz długość zakładów" min="0" step="1" required>
+
+                    <button id="calculate-steel-button" class="btn btn-primary mt-3">Oblicz ilość stali</button>
+
+                    <p class="mt-3">Całkowita ilość stali: <span id="total-steel">0</span> kg</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
         <!-- Nowa sekcja "Nasi Klienci" -->
         <section id="our-clients" class="our-clients">
             <h2>Zaufali nam</h2>
@@ -152,16 +226,31 @@ gtag('config', 'G-KXK83XGTXB');
             <div class="client-logo">
                 <img src="logo/gmina Mały Płock.png" alt="Gmina Mały Płock" title="Gmina Mały Płock">
         </div>
-           <div class="client-logo">
+        <div class="client-logo">
             <img src="logo/B-bud.png" alt="Usugi B-bud" title="Usługi budowlane B-Bud">
             </div>
+            
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2023 Prodom Budownictwo</p>
-        <p title="Dodano logo fb,dodano wbpb,dodano robots,txt, dodano sitmap.xml,dodano favicon">Wersja strony: 1.5</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2023 Prodom Budownictwo</p>
+                    <p title="Dodano logo fb,dodano wbpb,dodano robots,txt, dodano sitmap.xml,dodano favicon">Wersja strony: 1.6</p>
+                </div>
+                <div class="col-md-6 text-right">
+                    <!-- Sekcja kodu QR -->
+                    <p>Zeskanuj kod QR, aby otworzyć stronę na urządzeniu mobilnym.</p>
+                    <div id="qr-code-container" class="qr-code-container">
+                        <div id="qr-code" alt="Otworzyć stronę na urządzeniu mobilnym"></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- Dodaj linki do Bootstrap JS i jQuery -->
