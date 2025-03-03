@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (qrCodeContainer) {
         const currentUrl = window.location.href; // Bieżący adres URL strony
         new QRCode(qrCodeContainer, {
-            text: currentUrl,
+            text: currentUrl + "?qr=scanned", // Dodaj parametr do adresu URL
             width: 100,
             height: 100,
         });
@@ -195,8 +195,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sprawdź, czy strona jest otwarta na urządzeniu mobilnym
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-    if (isMobile) {
-        // Wyświetl monit o zapisanie strony na ekranie głównym
+    // Sprawdź, czy parametr ?qr=scanned istnieje w adresie URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const isQrScanned = urlParams.has('qr') && urlParams.get('qr') === 'scanned';
+
+    // Sprawdź, czy komunikat został już wyświetlony na tym urządzeniu
+    const isPromptShown = localStorage.getItem('promptShown') === 'true';
+
+    // Sprawdź, czy strona jest już zapisana na ekranie głównym
+    const isInstalled = window.matchMedia('(display-mode: standalone)').matches;
+
+    // Wyświetl monit tylko na małych ekranach, tylko po zeskanowaniu kodu QR, tylko raz i tylko jeśli strona nie jest już zapisana
+    if (isMobile && isQrScanned && !isPromptShown && !isInstalled) {
         const promptText = "Czy chcesz zapisać tę stronę na ekranie głównym?";
         if (confirm(promptText)) {
             // Dodaj stronę do ekranu głównego (PWA)
@@ -209,5 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert("Twoja przeglądarka nie obsługuje tej funkcji.");
             }
         }
+
+        // Oznacz, że komunikat został już wyświetlony
+        localStorage.setItem('promptShown', 'true');
     }
 });
