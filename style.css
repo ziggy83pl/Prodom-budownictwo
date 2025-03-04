@@ -7,7 +7,7 @@ body {
 
 header {
     background-color: #f8f9fa;
-    padding: 20px;
+    /* padding: 10px; */
     background-color: #333;
 }
 
@@ -109,7 +109,7 @@ nav ul.show {
 
 /* Sekcje */
 section {
-    padding: 40px 20px;
+    padding: 10px 10px;
 }
 
 .about-us, .services, .contact, .social-media {
@@ -121,8 +121,8 @@ section {
     color: #ffffff; /* White text color */
     padding-left: 20px;
     padding-right: 20px;
-    border-left: 20px solid #333; /* Simulate left padding color */
-    border-right: 20px solid #333; /* Simulate right padding color */
+    /* border-left: 10px solid #333; Left padding color */
+    /* border-right: 10px solid #333; Simulate right padding color */
 }
 
 #about-us .nav-link, #services .nav-link {
@@ -340,6 +340,8 @@ footer {
 .custom-navbar {
     background: url('logo/background.webp') no-repeat center center fixed;
     background-size: cover;
+    /* border-top-left-radius: 40px 40px;
+    border-top-right-radius: 40px 40px; */
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -408,8 +410,8 @@ a[href^="tel:"] {
 .calculator-section {
     padding: 20px; /* Wewnętrzny odstęp */
     margin: 0; /* Brak marginesów zewnętrznych */
-    border-left: 20px solid #333; /* Lewe obramowanie */
-    border-right: 20px solid #333; /* Prawe obramowanie */
+    /* border-left: 10px solid #333; /* Lewe obramowanie */
+    /* border-right: 10px solid #333; Prawe obramowanie */ 
     background: url('logo/beton.webp') no-repeat center center fixed; /* Tło */
     background-size: cover; /* Dopasowanie tła */
 }
@@ -513,7 +515,7 @@ a[href^="tel:"] {
     border-radius: 10px;
     
 }
-/* dodałem animacje dla logo power by AI*/
+
 .power-image {
     border-radius: 20px;
     width:100px;
@@ -547,3 +549,4 @@ animation: pulse 3s infinite ease-in-out;
 50% { transform: scale(1.03); }
 100% { transform: scale(1); }
 }
+
