@@ -21,13 +21,66 @@ nav {
     width: 100%;
     height: auto;
     border-radius: 50%;
-    border: 1px red solid;
+    border: 1px solid transparent; /* Przezroczysta granica jako podstawa */
     background-color: #6c757d;
     transition: transform 0.3s ease; /* Efekt hover */
+    position: relative; /* Potrzebne dla pseudo-elementu */
+    z-index: 1;
+    animation: pulse-with-glow 7s infinite ease-in-out;
 }
-.logo img:hover {
-    transform: scale(+1.1); /* Powiększenie logo po najechaniu */
+
+/* Animacja pulsowania */
+@keyframes pulse-with-glow {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(66, 133, 244, 0);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(66, 133, 244, 0.7);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(66, 133, 244, 0);
+    }
 }
+
+.calculator-description {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-top: 12px;
+    margin-top: 15px;
+    
+}
+
+.description-text {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+    background-color: #ffc;
+    border-radius: 15px;
+    height: 90px;
+    overflow: hidden;
+}
+@media (max-width: 768px) {
+    .description-text {
+        height: 70px;
+    }
+}
+
+
+.cursor {
+    color: #3498db;
+    animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+
+
+
 
 nav ul {
     list-style: none;
@@ -550,3 +603,20 @@ animation: pulse 3s infinite ease-in-out;
 100% { transform: scale(1); }
 }
 
+.fancy-gradient {
+    background: linear-gradient(90deg, #ff3366, #ba7fff, #50e3c2, #ff9500);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: flowing-gradient 25s ease infinite;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+@keyframes flowing-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
