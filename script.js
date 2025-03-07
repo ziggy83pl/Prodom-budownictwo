@@ -205,22 +205,113 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sprawdź, czy strona jest już zapisana na ekranie głównym
     const isInstalled = window.matchMedia('(display-mode: standalone)').matches;
 
-    // Wyświetl monit tylko na małych ekranach, tylko po zeskanowaniu kodu QR, tylko raz i tylko jeśli strona nie jest już zapisana
+    // Obsługa beforeinstallprompt
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+        event.preventDefault();
+        deferredPrompt = event;
+    });
+
+    // Wyświetl monit o zapisanie strony na ekranie głównym
+    function showInstallPrompt() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Użytkownik zaakceptował instalację');
+                } else {
+                    console.log('Użytkownik odrzucił instalację');
+                }
+                deferredPrompt = null;
+            });
+        }
+    }
+
+    // Wywołaj showInstallPrompt() po zeskanowaniu kodu QR
     if (isMobile && isQrScanned && !isPromptShown && !isInstalled) {
         const promptText = "Czy chcesz zapisać tę stronę na ekranie głównym?";
         if (confirm(promptText)) {
-            // Dodaj stronę do ekranu głównego (PWA)
-            if ('serviceWorker' in navigator && 'BeforeInstallPromptEvent' in window) {
-                window.addEventListener('beforeinstallprompt', (event) => {
-                    event.preventDefault();
-                    event.prompt();
-                });
-            } else {
-                alert("Twoja przeglądarka nie obsługuje tej funkcji.");
-            }
+            showInstallPrompt();
         }
-
-        // Oznacz, że komunikat został już wyświetlony
         localStorage.setItem('promptShown', 'true');
     }
+
+    // Zarejestruj Service Workera
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then((registration) => {
+                    console.log('Service Worker zarejestrowany:', registration);
+                })
+                .catch((error) => {
+                    console.error('Błąd rejestracji Service Workera:', error);
+                });
+        });
+    }
+
+        // Tekst dla pierwszego kalkulatora (powierzchni stropu)
+        const textArea = "Precyzyjne obliczanie powierzchni stropu dla Twojego projektu budowlanego. Idealny do szacowania ilości materiałów i kosztów wykonania.";
+        const typingTextArea = document.getElementById('typing-text');
+        
+        // Tekst dla drugiego kalkulatora (objętości betonu)
+        const textVolume = "Dokładne wyliczenie ilości betonu potrzebnego do realizacji projektu. Pomaga w planowaniu zamówień i optymalizacji kosztów budowy.";
+        const typingTextVolume = document.getElementById('typing-text-volume');
+        
+        // Tekst dla trzeciego kalkulatora (ilości stali)
+        const textSteel = "Szybkie obliczenie wagi zbrojenia potrzebnego do konstrukcji. Oszczędź czas i zoptymalizuj koszty materiałów.";
+        const typingTextSteel = document.getElementById('typing-text-steel');
+        
+        // Funkcja do animacji pisania tekstu z powtarzaniem
+        function typeWriterWithRepeat(text, element, delay = 10000, typingSpeed = 50) {
+            function startTyping() {
+                // Czyszczenie tekstu przed rozpoczęciem nowej animacji
+                element.textContent = '';
+                
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(type, typingSpeed);
+                    } else {
+                        // Po zakończeniu pisania, czekaj określony czas i powtórz
+                        setTimeout(() => {
+                            startTyping();
+                        }, delay);
+                    }
+                }
+                type();
+            }
+            
+            // Rozpocznij animację
+            startTyping();
+        }
+        
+        // Uruchomienie animacji dla pierwszego kalkulatora z opóźnieniem 0ms
+        if (typingTextArea) {
+            setTimeout(() => {
+                typeWriterWithRepeat(textArea, typingTextArea, 12000, 50);
+            }, 0);
+        }
+        
+        // Uruchomienie animacji dla drugiego kalkulatora z opóźnieniem 4000ms (4 sekundy)
+        if (typingTextVolume) {
+            setTimeout(() => {
+                typeWriterWithRepeat(textVolume, typingTextVolume, 14000, 50);
+            }, 4000);
+        }
+        
+        // Uruchomienie animacji dla trzeciego kalkulatora z opóźnieniem 7000ms (7 sekund)
+        if (typingTextSteel) {
+            setTimeout(() => {
+                typeWriterWithRepeat(textSteel, typingTextSteel, 10000, 50);
+            }, 7000);
+        }
+
+    
+    
+    
+
+    
 });
