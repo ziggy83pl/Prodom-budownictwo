@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'photo6.webp', 'photo7.webp', 'photo8.webp', 'photo9.webp', 'photo10.webp',
         'photo11.webp', 'photo12.webp', 'photo13.webp', 'photo14.webp', 'photo15.webp',
         'photo16.webp', 'photo17.webp', 'photo18.webp', 'photo19.webp', 'photo20.webp', 
-        'photo21.webp'
+        'photo21.webp', 'photo22.webp', 'photo23.webp', 'photo24.webp'
     ];
     const carouselInner = document.getElementById('carousel-inner');
     const carouselIndicators = document.getElementById('carousel-indicators');
