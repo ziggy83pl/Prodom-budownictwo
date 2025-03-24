@@ -309,9 +309,38 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 7000);
         }
 
-    
-    
-    
+     // Dodaj element powrotu do góry
+    const returnToTopButton = document.createElement('a');
+    returnToTopButton.href = '#';
+    returnToTopButton.id = 'return-to-top';
+    returnToTopButton.title = 'Powrót do góry';
+    returnToTopButton.innerHTML = '<i class="fas fa-chevron-up"></i>'; // Użyj ikony Font Awesome
+    document.body.appendChild(returnToTopButton);
+
+    // Początkowo ukryj przycisk (redundant as CSS already hides it, but good practice)
+    returnToTopButton.style.display = 'none';
+
+    // Pokaż/ukryj przycisk po przewinięciu strony TYLKO na dużych ekranach
+    if (window.innerWidth >= 768) { // Sprawdź szerokość ekranu
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                returnToTopButton.style.display = 'block';
+            } else {
+                returnToTopButton.style.display = 'none';
+            }
+        });
+
+        // Płynne przewijanie do góry po kliknięciu (zawsze aktywne, ale tylko na dużych ekranach będzie widoczny)
+        returnToTopButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+
 
     
 });
