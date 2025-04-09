@@ -77,22 +77,33 @@ gtag('config', 'G-KXK83XGTXB');
 
     <main>
         <section id="about-us" class="about-us">
-            <h2>O nas</h2>
-            <p>Jesteśmy doświadczoną firmą budowlaną z Łomży, specjalizującą się w kompleksowej realizacji inwestycji. 
+            <h2 class="ramka">O nas</h2>
+            <p class="ramka-2">Jesteśmy doświadczoną firmą budowlaną z Łomży, specjalizującą się w kompleksowej realizacji inwestycji. 
             Nasz zespół składa się z wykwalifikowanych specjalistów, którzy gwarantują wysoką jakość usług i terminowość. </p>
         </section>
 
         <section id="services" class="services">
             <div class="service">
-                <h3>Usługi</h3>
-                <p>Wykonujemy kompleksowe prace budowlane w Łomży i okolicy, w tym zbrojenie, wylewanie ław 
-                    fundamentowych, stropów oraz płyt fundamentowych. Specjalizujemy się w 
-                    murowaniu ścian, nadzorze budowlanym, a także świadczymy usługi koparkowe i 
-                    geodezyjne. Oferujemy również wykończenia wnętrz, w tym montaż płyt GK, 
-                    malowanie oraz inne prace wykończeniowe.</p>
-            </div>
+    <h3 class="ramka">Usługi</h3>
+    <p class="ramka-2">Wykonujemy kompleksowe prace budowlane w Łomży i okolicy</p>
+    
+    <div class="services-container">
+        <div class="service-column">
+            <p class="ramka">W tym zbrojenie, wylewanie ław fundamentowych, stropów oraz płyt fundamentowych. Specjalizujemy się w murowaniu ścian</p>
+        </div>
+        
+        <div class="service-column">
+            <p class="ramka">W nadzorze budowlanym, a także świadczymy usługi koparkowe i geodezyjne</p>
+        </div>
+        
+        <div class="service-column">
+            <p class="ramka">Oferujemy również wykończenia wnętrz, w tym montaż płyt GK, malowanie oraz inne prace wykończeniowe.</p>
+        </div>
+    </div>
+</div>
+
             <div class="service">
-                <h3 title="Parę zdjęc z róznych robót">Galeria zdjęć</h3>
+                <h3 class="ramka" title="Parę zdjęc z róznych robót">Galeria zdjęć</h3>
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators" id="carousel-indicators"></ol>
                     <div class="carousel-inner" id="carousel-inner"></div>
@@ -231,7 +242,7 @@ gtag('config', 'G-KXK83XGTXB');
 </section>
         <!-- Nowa sekcja "Nasi Klienci" -->
         <section id="our-clients" class="our-clients">
-            <h2>Zaufali nam</h2>
+            <h2 class="ramka-zaufali">Zaufali nam</h2>
             <div class="client-logos">
                 <div class="client-logo">
                     <img src="logo/arkop.png" alt="ARKOP - Usługi Koparkowe" title="ARKOP">
@@ -239,6 +250,11 @@ gtag('config', 'G-KXK83XGTXB');
                 <div class="client-logo">
                     <a href="https://agrovet.com.pl" target="_blank" rel="noopener noreferrer">
                         <img src="https://agrovet.com.pl/image/data/logo/agrovet_logo2.png" alt="Agrovet Śniadowo" title="Agrovet Śniadowo - komponenty paszowe i pasze">
+                    </a>
+                </div>
+                <div class="client-logo">
+                    <a href="https://www.braun2025.pl/" target="_blank" rel="noopener noreferrer">
+                        <img src="logo/Grzegorz_Braun.png" alt="Grzegorz_Braun" title="Grzegorz_Braun na prezydenta Polski 2025">
                     </a>
                 </div>
                 <div class="client-logo">
@@ -261,6 +277,11 @@ gtag('config', 'G-KXK83XGTXB');
         <div class="client-logo">
             <img src="logo/B-bud.png" alt="Usugi B-bud" title="Usługi budowlane B-Bud">
             </div>
+            <div class="client-logo">
+                <a href="https://mentzen2025.pl/" target="_blank" rel="noopener noreferrer">
+                <img src="logo/Sławomir_Mentze.png" alt="Sławomir_Mentze" title="Sławomir_Mentze na prezydenta Polski 2025">
+                </a>
+            </div>
             
             </div>
         </section>
@@ -271,20 +292,13 @@ gtag('config', 'G-KXK83XGTXB');
             <div class="row">
                 <div class="col-md-4">
                     <img src="logo/power.png" alt="Power by AI" title="Power by AI" class="img-fluid power-image">
-                    <img src="logo/Local-79.png" alt="Local 79" title="Local 79" class="img-fluid local-79-image"> <!-- Dodano nowy obrazek -->
+                    <img src="logo/Local-79.png" alt="Local 79" title="Local 79" class="img-fluid local-79-image">
                     <img src="logo/idea.png" alt="idea" title="idea" class="img-fluid idea">
                 </div>
                 <div class="col-md-4">
                     <p>&copy; 2023 Prodom Budownictwo wszelkie prawa zastrzeżone</p>
                     <p class="fancy-gradient" title="Dodano logo fb,dodano wbpb,dodano robots,txt,
-                    dodano sitmap.xml,dodano favicon">Wersja 1.8</p>
-                </div>
-                <div class="col-md-4 text-right">
-                    <!-- Sekcja kodu QR -->
-                    <div id="qr-code-container" class="qr-code-container">
-                        <div id="qr-code" alt="Otworzyć stronę na urządzeniu mobilnym"></div>
-                        <p>Stworzone po to, żeby skanować.</p>
-                    </div>
+                    dodano sitmap.xml,dodano favicon">Wersja 1.9</p>
                 </div>
             </div>
         </div>
