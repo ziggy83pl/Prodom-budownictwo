@@ -1,7 +1,3 @@
 User-agent: *
-Disallow: /admin/
-Disallow: /login/
-Disallow: /register/
 Allow: /
-
 Sitemap: http://www.prodombudownictwo.pl/sitemap.xml
