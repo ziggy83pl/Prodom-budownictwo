@@ -18,5 +18,5 @@ Zapraszamy do współpracy i wspólnego tworzenia wyjątkowych projektów budowl
 Kontakt:
 Telefon: +48 574 322 909
 Email: zbyszekszczesny83@gmail.com
-Adres: Łomża, Polska
+Adres: Łomża, Polska.
 https://ziggy83pl.github.io/Prodom-budownictwo/
