@@ -7,7 +7,7 @@
       <priority>1.0</priority>
    </url>
    <url>
-      <loc>http://www.prodombudownictwo.pl/index.html</loc>
+      <loc>https://ziggy83pl.github.io/Prodom-budownictwo/index.html</loc>
       <lastmod>2025-02-20</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
@@ -19,3 +19,4 @@
       <priority>0.8</priority>
    </url>
 </urlset>
+
