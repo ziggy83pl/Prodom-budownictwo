@@ -647,3 +647,78 @@ input:focus { outline: none; border-color: var(--accent-color); }
     .rental-grid { grid-template-columns: repeat(3, 1fr); }
     .b2b-grid { grid-template-columns: repeat(4, 1fr); }
 }
+
+/* =========================================
+   11. DODATEK: STRONA ZLECENIA
+   ========================================= */
+
+.hero-zlecenia {
+    background-color: var(--text-main); /* Ciemne tło */
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.zlecenia-cta {
+    background: var(--accent-color); /* Żółte tło dla kontrastu */
+    color: var(--text-main);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.zlecenia-cta .lead {
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+/* Lista Usług (Grid) */
+.service-list-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.service-item {
+    background: #fff;
+    padding: 15px;
+    border-left: 5px solid var(--accent-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.service-item i {
+    color: var(--accent-color);
+    margin-right: 10px;
+}
+
+/* Przyciski Udostępniania */
+.share-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 30px auto 0;
+}
+
+.share-btn {
+    padding: 15px;
+    border: none;
+    border-radius: var(--border-radius);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.share-fb { background-color: #1877F2; }
+.share-wa { background-color: #25D366; }
+
+/* Responsywność */
+@media (min-width: 768px) {
+    .service-list-grid { grid-template-columns: repeat(2, 1fr); }
+}
