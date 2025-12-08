@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przyjmiemy Zlecenia Budowlane Łomża i Okolice - Prodom</title>
+    <meta name="description" content="Szukasz doświadczonej ekipy w Łomży? Mamy wolne terminy! Fundamenty, domy jednorodzinne, mury oporowe, stany surowe. Zadzwoń: 574 322 909.">
+    <link rel="icon" type="image/x-icon" href="logo/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    
+    <meta property="og:title" content="Wolne Terminy w Łomży! Szukasz Ekipy Budowlanej?" />
+    <meta property="og:description" content="Fundamenty, stany surowe, mury, wiaty. Jesteśmy gotowi do podjęcia nowych zleceń. Szybki kontakt: 574 322 909." />
+    <meta property="og:image" content="https://ziggy83pl.github.io/Prodom-budownictwo//logo/logo.webp" /> <meta property="og:url" content="https://ziggy83pl.github.io/Prodom-budownictwo//zlecenia.html" /> </head>
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">PRODOM<span>.</span></a>
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Start</a></li>
+                    <li><a href="wypozyczalnia.html" class="nav-link">Wypożyczalnia</a></li>
+                    <li><a href="wspolpraca.html" class="nav-link">Dla Firm (B2B)</a></li>
+                    <li><a href="inwestycje.html" class="nav-link">Inwestycje</a></li>
+                    <li><a href="realizacje.html" class="nav-link">Realizacje</a></li>
+                    <li><a href="index.html#contact" class="nav-link btn-cta">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-zlecenia">
+            <div class="container hero-content text-center">
+                <h1 class="hero-title text-accent">MAMY WOLNE TERMINY!</h1>
+                <p class="hero-subtitle">Poszukujesz sprawdzonej ekipy do budowy w Łomży lub okolicach?</p>
+                
+                <div class="zlecenia-cta">
+                    <p class="lead">Nie czekaj na następny sezon. Zadzwoń i sprawdź, kiedy możemy zacząć!</p>
+                    <a href="tel:+48574322909" class="btn btn-primary btn-lg"><i class="fas fa-phone"></i> ZADZWOŃ TERAZ: 574 322 909</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nasz zakres prac</h2>
+                    <p>Jesteśmy gotowi do podjęcia nowych zleceń w zakresie prac ziemnych i stanów surowych:</p>
+                </div>
+
+                <div class="service-list-grid">
+                    <div class="service-item"><i class="fas fa-square-full"></i> Ławy i Fundamenty</div>
+                    <div class="service-item"><i class="fas fa-warehouse"></i> Budowa domów jednorodzinnych (stan surowy)</div>
+                    <div class="service-item"><i class="fas fa-road"></i> Mury oporowe i ogrodzenia betonowe</div>
+                    <div class="service-item"><i class="fas fa-car-side"></i> Wiaty, garaże i pomieszczenia gospodarcze</div>
+                    <div class="service-item"><i class="fas fa-layer-group"></i> Ściany murowane z różnych materiałów</div>
+                    <div class="service-item"><i class="fas fa-shield-alt"></i> Izolacje i hydroizolacje przeciwwodne</div>
+                </div>
+                
+                <div class="gallery-cta mt-5">
+                    <a href="realizacje.html" class="btn btn-outline">Zobacz nasze dotychczasowe realizacje &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container text-center">
+                <h2>Znasz kogoś, kto buduje w Łomży? Poleć nas!</h2>
+                <p>Udostępnij to ogłoszenie w swoich mediach społecznościowych. Ktoś z Twoich znajomych może szukać właśnie nas!</p>
+
+                <div class="share-buttons-container">
+                    <button id="shareFB" class="share-btn share-fb"><i class="fab fa-facebook-f"></i> Udostępnij na Facebooku</button>
+                    <button id="shareWA" class="share-btn share-wa"><i class="fab fa-whatsapp"></i> Wyślij na WhatsApp</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col"><p>&copy; 2025 Prodom Budownictwo.</p></div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        // JS do udostępniania
+        document.getElementById('shareFB').onclick = function() {
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), 'facebook-share-dialog', 'width=626,height=436');
+            return false;
+        };
+
+        document.getElementById('shareWA').onclick = function() {
+            window.open('whatsapp://send?text=' + encodeURIComponent('Potrzebujesz ekipy budowlanej w Łomży? Polecam PRODOM! Wolne terminy i dobre ceny: ' + window.location.href));
+        };
+    </script>
+</body>
+</html>
