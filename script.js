@@ -206,4 +206,61 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+/* =========================================
+   AUTOMATYCZNE DEKORACJE NOWOROCZNE
+   ========================================= */
+function checkNewYear() {
+    const now = new Date();
+    const month = now.getMonth(); // 11 to grudzień, 0 to styczeń
+    const date = now.getDate();
+
+    // Warunek: 31 grudnia LUB 1 stycznia
+    if ((month === 11 && date === 30) || (month === 0 && date === 1)) {
+        showNewYearDecorations();
+    }
+}
+
+function showNewYearDecorations() {
+    // 1. Dodajemy klasę do body, żeby sterować wyglądem w CSS
+    document.body.classList.add('sylwester-mode');
+
+    // 2. Tworzymy pasek z życzeniami
+    const greetingBar = document.createElement('div');
+    greetingBar.className = 'new-year-banner';
+    greetingBar.innerHTML = `
+        <div class="container">
+            <p>🎉 Szczęśliwego Nowego Roku 2026 życzy zespół PRODOM! 🥂</p>
+        </div>
+    `;
+    document.body.prepend(greetingBar);
+
+    // 3. Dodajemy czapeczkę do logo (opcjonalnie)
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        const hat = document.createElement('span');
+        hat.innerHTML = '🥳';
+        hat.style.fontSize = '20px';
+        hat.style.marginLeft = '5px';
+        logo.appendChild(hat);
+    }
+    
+    // 4. Odpalamy konfetti (użyjemy prostej funkcji JS)
+    createConfetti();
+}
+
+function createConfetti() {
+    for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDelay = Math.random() * 3 + 's';
+        confetti.style.backgroundColor = ['#FFD700', '#FFFFFF', '#FFA500'][Math.floor(Math.random() * 3)];
+        document.body.appendChild(confetti);
+    }
+}
+
+// Uruchomienie sprawdzenia po załadowaniu strony
+window.addEventListener('load', checkNewYear);
+
 });
