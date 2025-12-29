@@ -722,3 +722,87 @@ input:focus { outline: none; border-color: var(--accent-color); }
 @media (min-width: 768px) {
     .service-list-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* =========================================
+   12. DODATEK: KOMUNIKATY I SHARE
+   ========================================= */
+
+.modernization-message {
+    text-align: center;
+    padding: 30px;
+    margin-bottom: 40px;
+    border: 1px solid var(--accent-color); /* Ramka w kolorze akcentu */
+    background-color: #fefcf5; /* Delikatne tło */
+    border-radius: var(--border-radius);
+}
+
+.modernization-message h2 {
+    color: var(--text-main); /* Główny kolor tekstu */
+    margin-top: 10px;
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.modernization-message i {
+    color: var(--accent-color); /* Ikona w kolorze akcentu (żółty/pomarańcz) */
+}
+
+/* Dostosowanie kontenera udostępniania na tej stronie */
+.share-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 30px auto 0;
+}
+
+.share-buttons-container .text-center {
+    display: flex;
+    gap: 10px;
+}
+
+/* --- STYLE SYLWESTROWE --- */
+
+/* Pasek na górze */
+.new-year-banner {
+    background: linear-gradient(90deg, #1a1a1a 0%, #d4af37 50%, #1a1a1a 100%);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    font-size: 0.9rem;
+    z-index: 9999;
+    position: relative;
+    border-bottom: 2px solid #ffd700;
+}
+
+/* Animacja spadającego konfetti */
+.confetti {
+    position: fixed;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    background-color: #ffd700;
+    border-radius: 2px;
+    z-index: 9998;
+    pointer-events: none; /* Żeby nie przeszkadzało w klikaniu */
+    animation: fall 4s linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Zmiana akcentów na złoty podczas Sylwestra */
+.sylwester-mode .btn-primary {
+    background-color: #d4af37 !important;
+    border-color: #d4af37 !important;
+    color: #000 !important;
+}
+
+.sylwester-mode .text-accent {
+    color: #d4af37 !important;
+}
