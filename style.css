@@ -761,54 +761,60 @@ input:focus { outline: none; border-color: var(--accent-color); }
     gap: 10px;
 }
 
-/* --- STYLE SYLWESTROWE --- */
+/* =========================================
+   TRYB SYLWESTROWY - FINALNE POPRAWKI
+   ========================================= */
 
-/* Pasek na górze */
+/* Pasek na samej górze - musi być FIXED, żeby nie uciekł */
 .new-year-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 45px; /* Stała wysokość */
     background: linear-gradient(90deg, #1a1a1a 0%, #d4af37 50%, #1a1a1a 100%);
     color: white;
-    text-align: center;
-    padding: 10px 0;
-    font-weight: bold;
-    font-size: 0.9rem;
-    z-index: 9999;
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.95rem;
+    z-index: 10002; /* Wyżej niż header (1000) */
     border-bottom: 2px solid #ffd700;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* WAŻNE: Przesuwamy nagłówek i całą stronę w dół, gdy pasek jest aktywny */
+body.sylwester-mode {
+    padding-top: 45px !important;
+}
+
+body.sylwester-mode .header {
+    top: 45px; /* Header przesuwa się pod pasek */
 }
 
 /* Animacja spadającego konfetti */
 .confetti {
     position: fixed;
-    top: -10px;
-    width: 10px;
-    height: 10px;
-    background-color: #ffd700;
+    top: -15px;
+    width: 8px;
+    height: 8px;
+    z-index: 10001; /* Pomiędzy paskiem a treścią */
+    pointer-events: none;
     border-radius: 2px;
-    z-index: 9998;
-    pointer-events: none; /* Żeby nie przeszkadzało w klikaniu */
     animation: fall 4s linear infinite;
 }
 
 @keyframes fall {
-    to {
-        transform: translateY(105vh) rotate(360deg);
-        opacity: 0;
-    }
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
 }
 
-/* Styl dla paska, jeśli nie użyłeś stylu inline z JS */
-.new-year-banner {
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-/* Zmiana akcentów na złoty podczas Sylwestra */
+/* Złoty akcent dla przycisków w Sylwestra */
 .sylwester-mode .btn-primary {
     background-color: #d4af37 !important;
-    border-color: #d4af37 !important;
+    border-color: #ffd700 !important;
     color: #000 !important;
 }
 
-.sylwester-mode .text-accent {
-    color: #d4af37 !important;
-}
 
