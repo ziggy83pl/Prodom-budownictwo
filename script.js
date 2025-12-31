@@ -216,7 +216,7 @@ function checkNewYear() {
     const date = now.getDate();
 
     // Warunek: 31 grudnia LUB 1 stycznia
-    if ((month === 11 && date === 30) || (month === 0 && date === 1)) {
+    if ((month === 11 && date === 31) || (month === 0 && date === 1)) {
         showNewYearDecorations();
     }
 }
@@ -264,3 +264,4 @@ function createConfetti() {
 window.addEventListener('load', checkNewYear);
 
 });
+
