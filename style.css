@@ -796,6 +796,11 @@ input:focus { outline: none; border-color: var(--accent-color); }
     }
 }
 
+/* Styl dla paska, jeśli nie użyłeś stylu inline z JS */
+.new-year-banner {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
 /* Zmiana akcentów na złoty podczas Sylwestra */
 .sylwester-mode .btn-primary {
     background-color: #d4af37 !important;
@@ -806,3 +811,4 @@ input:focus { outline: none; border-color: var(--accent-color); }
 .sylwester-mode .text-accent {
     color: #d4af37 !important;
 }
+
