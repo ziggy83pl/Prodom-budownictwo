@@ -74,8 +74,10 @@
                 <p>Udostępnij to ogłoszenie w swoich mediach społecznościowych. Ktoś z Twoich znajomych może szukać właśnie nas!</p>
 
                 <div class="share-buttons-container">
-                    <button id="shareFB" class="share-btn share-fb"><i class="fab fa-facebook-f"></i> Udostępnij na Facebooku</button>
+                    <button id="copyLink" class="share-btn" style="background-color: #333;"><i class="fas fa-link"></i> Kopiuj link</button>
                     <button id="shareWA" class="share-btn share-wa"><i class="fab fa-whatsapp"></i> Wyślij na WhatsApp</button>
+                    <button id="shareFB" class="share-btn share-fb"><i class="fab fa-facebook-f"></i> Udostępnij na Facebooku</button>
+                    
                 </div>
             </div>
         </section>
@@ -89,13 +91,40 @@
     <script src="script.js"></script>
     <script>
         // JS do udostępniania
+        
+        // Jeśli przeglądarka obsługuje natywne udostępnianie (telefony), zmieniamy tekst przycisku, żeby użytkownik wiedział, że może wysłać SMS/Messenger
+        if (navigator.share) {
+            document.getElementById('shareFB').innerHTML = '<i class="fas fa-share-alt"></i> Udostępnij (SMS, Messenger)';
+        }
+
         document.getElementById('shareFB').onclick = function() {
-            window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), 'facebook-share-dialog', 'width=626,height=436');
-            return false;
-        };
+    // Sprawdzamy, czy przeglądarka obsługuje nowoczesne udostępnianie
+    if (navigator.share) {
+        navigator.share({
+            title: 'PRODOM - Usługi Budowlane',
+            text: 'Sprawdź profesjonalne usługi budowlane i kalkulatory od PRODOM!',
+            url: window.location.href,
+        })
+        .then(() => console.log('Udostępniono pomyślnie'))
+        .catch((error) => console.log('Błąd udostępniania', error));
+    } else {
+        // Fallback dla starych przeglądarek i komputerów - zwykły Messenger lub FB
+        const url = encodeURIComponent(window.location.href);
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, 'facebook-share-dialog', 'width=626,height=436');
+    }
+    return false;
+};
 
         document.getElementById('shareWA').onclick = function() {
-            window.open('whatsapp://send?text=' + encodeURIComponent('Potrzebujesz ekipy budowlanej w Łomży? Polecam PRODOM! Wolne terminy i dobre ceny: ' + window.location.href));
+            window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent('Potrzebujesz ekipy budowlanej w Łomży? Polecam PRODOM! Wolne terminy i dobre ceny: ' + window.location.href));
+        };
+
+        document.getElementById('copyLink').onclick = function() {
+            navigator.clipboard.writeText(window.location.href).then(function() {
+                alert('Link został skopiowany! Możesz go teraz wkleić w SMS, Messengerze lub mailu.');
+            }, function(err) {
+                console.error('Błąd kopiowania: ', err);
+            });
         };
     </script>
 </body>
