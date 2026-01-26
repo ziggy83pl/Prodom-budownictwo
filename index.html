@@ -64,7 +64,7 @@
         <li><a href="wspolpraca.html" class="nav-link">Dla Firm (B2B)</a></li>
         <li><a href="inwestycje.html" class="nav-link text-accent">Inwestycje</a></li> <li><a href="realizacje.html" class="nav-link">Realizacje</a></li>
         <li><a href="index.html#contact" class="nav-link btn-cta">Kontakt</a></li>
-        <li><a href="zlecenia.html" class="nav-link">zlecenia</a></li>
+        <li><a href="zlecenia.html" class="nav-link">Zlecenia</a></li>
     </ul>
 </nav>
         </div>
@@ -83,7 +83,7 @@
             </div>
         </section>
 
-        <section id="about" class="section about">
+        <section id="about" class="section about fade-in-section">
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag">O FIRMIE</span>
@@ -112,7 +112,7 @@
             </div>
         </section>
 
-        <section id="services" class="section services bg-light">
+        <section id="services" class="section services bg-light fade-in-section">
             <div class="container">
                 <div class="section-header">
                     <span class="section-tag">OFERTA</span>
@@ -139,7 +139,7 @@
             </div>
         </section>
 
-        <section id="calculators" class="section calculators">
+        <section id="calculators" class="section calculators fade-in-section">
             <div class="container">
                 <div class="section-header text-center">
                     <span class="section-tag">NARZĘDZIA</span>
@@ -228,10 +228,13 @@
             </div>
         </section>
 
-        <section id="clients" class="section clients bg-light">
+        <section id="clients" class="section clients bg-light fade-in-section">
             <div class="container">
                 <p class="clients-title">Zaufali nam</p>
                 <div class="clients-logos">
+    <a href="https://ziggy83pl.github.io/rentmaster/" target="_blank" rel="noopener noreferrer">
+    <img src="logo/rentmaster.png" alt="RentMaster" title="RentMaster - Wynajem Garaży i Magazynów" loading="lazy">
+    </a>
     <img src="logo/arkop.png" alt="Arkop" loading="lazy">
     <img src="logo/doners_kebab.png" alt="Doners" loading="lazy">
     <img src="logo/embrus.jpg" alt="Embrus" loading="lazy">
@@ -241,17 +244,18 @@
         <img src="https://agrovet.com.pl/image/data/logo/agrovet_logo2.png" alt="Agrovet Śniadowo" title="Agrovet Śniadowo - komponenty paszowe i pasze" loading="lazy">
     </a>
     <img src="logo/architekci.png" alt="Architekci &amp; Budownictwo" title="Architekci &amp; Budownictwo" loading="lazy">
-    <img src="logo/B-bud.png" alt="Usugi B-bud" title="Usługi budowlane B-Bud" loading="lazy">
+    <img src="logo/B-bud.png" alt="Usługi B-bud" title="Usługi budowlane B-Bud" loading="lazy">
 
     <img src="logo/geotech.png" alt="GeoTech Tyczenie" title="GeoTech Tyczenie - Geodezja" loading="lazy">
     <img src="logo/luxinvest.png" alt="Lux Invest Deweloper" title="Lux Invest Deweloper - Nieruchomości" loading="lazy">
     <img src="logo/ekocieplo.png" alt="Eko-Ciepło Izolacje" title="Eko-Ciepło Izolacje - Docieplenia" loading="lazy">
     <img src="logo/masterleasing.png" alt="Master-Leasing Sprzęt" title="Master-Leasing Sprzęt - Wynajem maszyn" loading="lazy">
+    
 </div>
             </div>
         </section>
 
-        <section id="contact" class="section contact dark-mode">
+        <section id="contact" class="section contact dark-mode fade-in-section">
             <div class="container contact-wrapper">
                 <div class="contact-info">
                     <span class="section-tag text-accent">KONTAKT</span>
@@ -280,17 +284,18 @@
                     </div>
                 </div>
 
-                <form id="contact-form" class="contact-form" action="https://formsubmit.co/zbyszekszczesny83@gmail.com" method="POST">
-    
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_subject" value="Nowe zapytanie ze strony Prodom!">
-                    <input type="hidden" name="_template" value="table"> <div class="form-group">
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
                         <label for="name">Imię i Nazwisko</label>
                         <input type="text" id="name" name="name" required placeholder="Jan Kowalski">
                     </div>
                     <div class="form-group">
                         <label for="phone">Telefon</label>
                         <input type="tel" id="phone" name="phone" required placeholder="123 456 789">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email (opcjonalnie)</label>
+                        <input type="email" id="email" name="email" placeholder="jan@example.com">
                     </div>
                     <div class="form-group">
                         <label for="message">Wiadomość</label>
@@ -305,10 +310,10 @@
     <footer class="footer">
         <div class="container footer-content">
             <div class="footer-col">
-                <p>&copy; 2025 Prodom Budownictwo. Wszelkie prawa zastrzeżone.</p>
+                <p>&copy; 2024 Prodom Budownictwo. Wszelkie prawa zastrzeżone.</p>
             </div>
             <div class="footer-col text-right">
-                <p class="footer-version">v2.1 Mobile First</p>
+                <p class="footer-version">v2.2 Mobile First</p>
             </div>
         </div>
     </footer>
