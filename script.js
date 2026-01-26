@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-   /* =========================================
-       2. FORMULARZ KONTAKTOWY
-       ========================================= */
+    /* =========================================
+    2. FORMULARZ KONTAKTOWY
+    ========================================= */
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -55,16 +55,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify({
                     name: document.getElementById('name').value,
                     phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
                     message: document.getElementById('message').value,
-                    _subject: "Nowe zapytanie Prodom"
+                    _subject: contactForm.getAttribute('data-subject') || "Nowe zapytanie Prodom",
+                    _autoresponse: "Dziękujemy za wiadomość! Otrzymaliśmy Twoje zgłoszenie i skontaktujemy się z Tobą wkrótce."
                 })
             })
-            .then(() => {
-                alert('Wiadomość wysłana!');
-                contactForm.reset();
+            .then(response => {
+                if (response.ok) {
+                    contactForm.innerHTML = `
+                        <div style="text-align: center; padding: 20px;">
+                            <i class="fas fa-check-circle" style="font-size: 3rem; color: #2ecc71; margin-bottom: 20px;"></i>
+                            <h3 style="color: #1a1a1a;">Dziękujemy za wiadomość!</h3>
+                            <p>Skontaktujemy się z Tobą w ciągu 48 godzin.</p>
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Błąd wysyłki');
+                }
             })
-            .catch(() => alert('Błąd wysyłki.'))
-            .finally(() => {
+            .catch(() => {
+                alert('Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie.');
                 btn.innerText = originalText;
                 btn.disabled = false;
             });
@@ -88,6 +99,62 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Pozostałe kalkulatory (Beton, Stal) działają na tej samej zasadzie...
+
+    /* =========================================
+       4. ANIMACJE SCROLLOWANIA (FADE IN)
+       ========================================= */
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15 // Element musi być w 15% widoczny
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Animacja tylko raz
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-section').forEach(section => {
+        observer.observe(section);
+    });
+
+    /* =========================================
+       5. ANIMACJA LICZNIKÓW (O FIRMIE)
+       ========================================= */
+    const counters = document.querySelectorAll('.stat-number');
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.innerText);
+                
+                if (!isNaN(target)) {
+                    const suffix = counter.innerText.replace(/[0-9]/g, ''); // Zachowuje znaki np. "+" lub "%"
+                    const duration = 2000; // Czas trwania: 2 sekundy
+                    const increment = target / (duration / 16); // Płynność ~60 FPS
+
+                    let current = 0;
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.innerText = Math.ceil(current) + suffix;
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = target + suffix; // Ustawienie końcowej wartości
+                        }
+                    };
+                    updateCounter();
+                }
+                observer.unobserve(counter); // Animacja tylko raz
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
 
     /* =========================================
    INTELIGENTNY SYSTEM ŚWIĄTECZNY 2026
@@ -171,4 +238,3 @@ function createParticles(type) {
 window.addEventListener('load', manageHolidayDecorations);
 
 }); // KONIEC DOMContentLoaded
-
