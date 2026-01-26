@@ -211,6 +211,7 @@ img { max-width: 100%; height: auto; display: block; }
     background-image: url('logo/background.webp'); /* Upewnij się, że plik istnieje */
     background-size: cover;
     background-position: center;
+    background-attachment: fixed; /* Efekt paralaksy */
     color: #fff;
     margin-top: 0;
 }
@@ -761,6 +762,21 @@ input:focus { outline: none; border-color: var(--accent-color); }
     gap: 10px;
 }
 
+/* =========================================
+   13. ANIMACJE (FADE IN)
+   ========================================= */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
 /* --- STYLE SYLWESTROWE - WERSJA Z DOPASOWANIEM MENU --- */
 
 /* 1. Pasek życzeń - zostaje na samej górze */
@@ -845,5 +861,3 @@ body.holiday-mode .header { top: 50px !important; }
     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
     100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
 }
-
-
