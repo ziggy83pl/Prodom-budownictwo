@@ -63,13 +63,26 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => {
                 if (response.ok) {
-                    contactForm.innerHTML = `
-                        <div style="text-align: center; padding: 20px;">
-                            <i class="fas fa-check-circle" style="font-size: 3rem; color: #2ecc71; margin-bottom: 20px;"></i>
-                            <h3 style="color: #1a1a1a;">Dziękujemy za wiadomość!</h3>
-                            <p>Skontaktujemy się z Tobą w ciągu 48 godzin.</p>
-                        </div>
+                    const originalChildren = Array.from(contactForm.children);
+                    originalChildren.forEach(child => child.style.display = 'none');
+
+                    const successDiv = document.createElement('div');
+                    successDiv.className = 'form-success';
+                    successDiv.innerHTML = `
+                        <i class="fas fa-check-circle" style="font-size: 3rem; color: #2ecc71; margin-bottom: 20px;"></i>
+                        <h3>Dziękujemy za wiadomość!</h3>
+                        <p>Skontaktujemy się z Tobą w ciągu 24 godzin.</p>
+                        <button type="button" id="new-message-btn" class="btn btn-primary" style="margin-top: 20px; background-color: var(--accent-color); color: #000;">Wyślij kolejną wiadomość</button>
                     `;
+                    contactForm.appendChild(successDiv);
+
+                    document.getElementById('new-message-btn').addEventListener('click', () => {
+                        successDiv.remove();
+                        originalChildren.forEach(child => child.style.display = '');
+                        contactForm.reset();
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                    });
                 } else {
                     throw new Error('Błąd wysyłki');
                 }
@@ -109,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         threshold: 0.15 // Element musi być w 15% widoczny
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    const animationObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
@@ -119,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     document.querySelectorAll('.fade-in-section').forEach(section => {
-        observer.observe(section);
+        animationObserver.observe(section);
     });
 
     /* =========================================
@@ -236,5 +249,49 @@ function createParticles(type) {
 }
 
 window.addEventListener('load', manageHolidayDecorations);
+
+    /* =========================================
+       6. DODATKOWE LOGOTYPY I STOPKA (ENTERPRISE)
+       ========================================= */
+    const clientsContainer = document.querySelector('.clients-logos');
+    if (clientsContainer) {
+        const projects = [
+            { name: "Doners Kebab", url: "https://www.facebook.com/DonersLomza", img: "https://ziggy83pl.github.io/zasoby/logo/doners_kebab.webp", title: "Doners Kebab Łomża", color: "#e67e22" },
+            { name: "Rentmaster", url: "https://ziggy83pl.github.io/rentmaster/", img: "https://ziggy83pl.github.io/zasoby/logo/rentmaster.webp", title: "RentMaster - Wynajem", color: "#1a2a6c" },
+            { name: "Paweł Szczęsny", url: "https://ziggy83pl.github.io/PawelSzczesny/index.html", img: "https://ziggy83pl.github.io/zasoby/logo/pawel.webp", title: "CZŁOWIEK, KTÓRY WYKONA WSZYSTKO", color: "#34495e" },
+            { name: "Siepomaga", url: "https://www.siepomaga.pl", img: "https://ziggy83pl.github.io/zasoby/logo/siepomaga.webp", title: "Wspieramy Siepomaga.pl", color: "#e74c3c" },
+            { name: "Enterprise", url: "https://ziggy83pl.github.io/Enterprise/", img: "https://ziggy83pl.github.io/zasoby/logo/enterprise.webp", title: "Enterprise - Strony WWW", color: "#10b981" }
+        ];
+
+        projects.forEach((project, index) => {
+            const link = document.createElement('a');
+            link.href = project.url;
+            link.target = "_blank";
+            link.className = "logo-tooltip fade-in-section";
+            link.setAttribute("data-tooltip", project.title);
+            link.style.margin = "10px";
+            // Sekwencyjna animacja
+            link.style.transitionDelay = `${index * 0.1}s`;
+
+            const img = document.createElement('img');
+            img.src = project.img;
+            img.alt = project.name;
+            img.style.setProperty('--hover-color', project.color);
+            // Dodatkowe style, aby pasowały do istniejących
+            img.style.padding = "5px";
+            
+            link.appendChild(img);
+            clientsContainer.appendChild(link);
+            animationObserver.observe(link); // Obserwuj nowo dodane logo
+        });
+    }
+
+    // Dodanie podpisu w stopce
+    const footerContent = document.querySelector('.footer-content');
+    if (footerContent) {
+        const realization = document.createElement('div');
+        realization.innerHTML = 'Realizacja: <a href="https://ziggy83pl.github.io/Enterprise/" target="_blank" class="logo-tooltip" data-tooltip="Zamów profesjonalną stronę WWW">Enterprise</a>';
+        footerContent.appendChild(realization);
+    }
 
 }); // KONIEC DOMContentLoaded
