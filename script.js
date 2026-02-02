@@ -95,6 +95,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function formatujTelefon(input) {
+    let numer = input.value.replace(/\D/g, '');
+    numer = numer.substring(0, 9);
+
+    if (numer.length > 6) {
+        input.value = numer.substring(0, 3) + ' ' + numer.substring(3, 6) + ' ' + numer.substring(6);
+    } else if (numer.length > 3) {
+        input.value = numer.substring(0, 3) + ' ' + numer.substring(3);
+    } else {
+        input.value = numer;
+    }
+}
+
     /* =========================================
        3. KALKULATORY
        ========================================= */
@@ -295,3 +308,4 @@ window.addEventListener('load', manageHolidayDecorations);
     }
 
 }); // KONIEC DOMContentLoaded
+
