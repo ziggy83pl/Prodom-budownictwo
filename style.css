@@ -111,16 +111,22 @@ img { max-width: 100%; height: auto; display: block; }
     margin-bottom: 15px;
 }
 
-/* === 3. HEADER & NAV (MOBILE FIRST) === */
+/* === POPRAWIONA SEKCJA 3. HEADER === */
 .header {
-    position: fixed;
+    /* Sticky sprawia, że pasek zajmuje miejsce, więc sekcje pod nim nie "skaczą" */
+    position: -webkit-sticky; /* Wsparcie dla Safari */
+    position: sticky; 
     top: 0;
     left: 0;
     width: 100%;
+    
+    /* Klucz do braku wystawania za ekran: */
+    box-sizing: border-box; 
+    
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
-    padding: 15px 0;
+    padding: 15px 20px; /* Padding wewnątrz paska */
     box-shadow: 0 2px 20px rgba(0,0,0,0.05);
 }
 
@@ -128,6 +134,17 @@ img { max-width: 100%; height: auto; display: block; }
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Usuń stąd width: 100vw jeśli masz gdzieś w .nav-links */
+@media (max-width: 600px) {
+    .nav-links {
+        width: 100%;
+        left: 0;
+    }
 }
 
 .logo {
@@ -1002,3 +1019,4 @@ body.holiday-mode .header { top: 50px !important; }
 .form-success h3 { color: var(--text-main); margin-bottom: 15px; font-size: 1.8rem; }
 .form-success p { color: var(--text-muted); font-size: 1.1rem; }
 @keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+
