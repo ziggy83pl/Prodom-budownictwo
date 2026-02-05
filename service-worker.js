@@ -1,12 +1,12 @@
 // service-worker.js
-const CACHE_NAME = 'prodom-cache-v1';
+const CACHE_NAME = 'prodom-cache-v2';
 const urlsToCache = [
-'/',
-'/index.html',
-'/style.css',
-'/script.js',
-'/logo/icon-192x192.png',
-'/logo/icon-512x512.png'
+'./',
+'./index.html',
+'./style.css',
+'./script.js',
+'./logo/icon-192.png',
+'./logo/icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {

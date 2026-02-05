@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
 
     <meta property="og:title" content="PRODOM Budownictwo: Fundamenty, Domy, Inwestycje w Łomży i Okolicy" />
     <meta property="og:description" content="Doświadczona ekipa budowlana ze sprawdzonym zapleczem technicznym. Realizujemy stany surowe, mury, fundamenty oraz podejmujemy współpracę inwestycyjną." />
@@ -139,7 +140,7 @@
             </div>
         </section>
 
-        <section id="calculators" class="section calculators fade-in-section">
+        <section id="calculators" class="section calculators fade-in-section section-calculators">
             <div class="container">
                 <div class="section-header text-center">
                     <span class="section-tag">NARZĘDZIA</span>
@@ -286,7 +287,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Telefon</label>
-                        <input type="tel" id="phone" name="phone" oninput="formatujTelefon(this)" required placeholder="123 456 789">
+                        <input type="tel" id="phone" name="phone" required placeholder="123 456 789">
                     </div>
                     <div class="form-group">
                         <label for="email">Email (opcjonalnie)</label>
@@ -303,17 +304,20 @@
     </main>
 
     <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-col">
-                <p>&copy; 2024 Prodom Budownictwo. Wszelkie prawa zastrzeżone.</p>
+        <div class="container">
+            <!-- Globalne Loga -->
+            <div id="global-trusted-logos" style="margin-bottom: 30px;"></div>
+
+            <div class="footer-info">
+                <p>&copy; 2026 Prodom Budownictwo <span style="font-size: 0.85em; opacity: 0.7;">v2.0</span> <span class="footer-separator">|</span></p>
+                <p>Realizacja: <a href="https://ziggy83pl.github.io/enterprise/index.html" target="_blank" id="version-text" class="logo-tooltip" data-tooltip="Zamów profesjonalną stronę WWW">Enterprise</a></p>
             </div>
-            <div class="footer-col text-right">
-                <p class="footer-version">v2.2 Mobile First</p>
-            </div>
+            <button id="install-btn" class="btn-install"><i class="fas fa-download"></i> Zainstaluj Aplikację</button>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://ziggy83pl.github.io/zasoby/portfolio-logos.js" defer></script>
+    <script src="https://ziggy83pl.github.io/zasoby/magnifier.js" defer></script>
 </body>
 </html>
-

@@ -6,6 +6,7 @@
     --text-main: #1a1a1a; /* Ciemny grafit */
     --text-muted: #6c757d;
     --accent-color: #FFB400; /* Budowlany żółty/bursztynowy - mocny kontrast */
+    --accent: var(--accent-color); /* Alias dla globalnych skryptów */
     --dark-bg: #111111;
     
     /* Typografia */
@@ -25,6 +26,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -34,6 +37,8 @@ body {
     line-height: 1.6;
     font-size: 16px;
     overflow-x: hidden;
+    width: 100%;
+    position: relative;
 }
 
 a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -111,22 +116,18 @@ img { max-width: 100%; height: auto; display: block; }
     margin-bottom: 15px;
 }
 
-/* === POPRAWIONA SEKCJA 3. HEADER === */
+/* === 3. HEADER & NAV (MOBILE FIRST) === */
 .header {
-    /* Sticky sprawia, że pasek zajmuje miejsce, więc sekcje pod nim nie "skaczą" */
     position: -webkit-sticky; /* Wsparcie dla Safari */
-    position: sticky; 
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
-    
-    /* Klucz do braku wystawania za ekran: */
-    box-sizing: border-box; 
-    
+    box-sizing: border-box;
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
-    padding: 15px 20px; /* Padding wewnątrz paska */
+    padding: 15px 20px;
     box-shadow: 0 2px 20px rgba(0,0,0,0.05);
 }
 
@@ -134,17 +135,9 @@ img { max-width: 100%; height: auto; display: block; }
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    width: 100%;
-}
-
-/* Usuń stąd width: 100vw jeśli masz gdzieś w .nav-links */
-@media (max-width: 600px) {
-    .nav-links {
-        width: 100%;
-        left: 0;
-    }
 }
 
 .logo {
@@ -193,7 +186,16 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* Desktop Nav */
 @media (min-width: 992px) {
-    .mobile-menu-btn { display: none; }
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .mobile-menu-btn { 
+        display: none; 
+        position: static;
+        transform: none;
+    }
     .nav {
         position: static;
         display: block;
@@ -870,7 +872,7 @@ input:focus { outline: none; border-color: var(--accent-color); }
     background: rgba(255,255,255,0.1);
     border-radius: 50%;
 }
-}
+
 
 /* --- STYLE SYLWESTROWE - WERSJA Z DOPASOWANIEM MENU --- */
 
@@ -957,59 +959,6 @@ body.holiday-mode .header { top: 50px !important; }
     100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
 }
 
-/* === DODATEK: PARTNERZY I LOGOTYPY === */
-.trusted-logos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin-top: 20px;
-}
-
-.trusted-logos img {
-    height: 70px;
-    width: 70px;
-    object-fit: contain;
-    border-radius: 50%;
-    background-color: #ffffff;
-    padding: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    filter: grayscale(100%);
-    opacity: 0.9;
-    transition: all 0.3s ease;
-}
-
-.trusted-logos img:hover {
-    filter: grayscale(0%);
-    opacity: 1;
-    transform: scale(1.1);
-    box-shadow: 0 0 20px var(--hover-color);
-}
-
-/* Tooltip (Dymek) */
-.logo-tooltip { position: relative; display: inline-block; }
-.logo-tooltip::before, .logo-tooltip::after {
-    position: absolute; opacity: 0; visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    pointer-events: none; z-index: 1100;
-}
-.logo-tooltip::after {
-    content: attr(data-tooltip); bottom: 100%; left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: #333; color: #fff; padding: 8px 12px;
-    border-radius: 6px; font-size: 0.85rem; white-space: nowrap;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin-bottom: 12px;
-}
-.logo-tooltip::before {
-    content: ''; bottom: 100%; left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    border: 6px solid transparent; border-top-color: #333; margin-bottom: 0px;
-}
-.logo-tooltip:hover::before, .logo-tooltip:hover::after {
-    opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
-}
-
 /* Form Success */
 .form-success {
     text-align: center; padding: 40px; background: #fff;
@@ -1020,3 +969,55 @@ body.holiday-mode .header { top: 50px !important; }
 .form-success p { color: var(--text-muted); font-size: 1.1rem; }
 @keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
 
+/* --- Footer Layout & Magnifier (Dla Prodom) --- */
+.footer-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    opacity: 0.9;
+    margin-bottom: 15px;
+    color: #555; /* Kolor tekstu w stopce Prodom */
+}
+
+.footer-separator {
+    display: inline;
+}
+
+@media (max-width: 600px) {
+    .footer-info {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .footer-separator { display: none; }
+}
+
+/* === Ukrywanie sekcji "Strefa Inwestora" (Kalkulatory) na małych ekranach === */
+@media (max-width: 991px) {
+    /* Aby ukryć całą sekcję kalkulatorów (wraz z nagłówkiem "Strefa Inwestora"), */
+    /* dodaj klasę 'section-calculators' do elementu <section> zawierającego kalkulatory w Twoim pliku HTML. */
+    .section-calculators {
+        display: none;
+    }
+}
+
+/* === Przycisk instalacji PWA === */
+.btn-install {
+    margin-top: 20px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #6c757d;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.3s;
+    display: none; /* Domyślnie ukryty, JS go pokaże */
+}
+.btn-install:hover {
+    background-color: var(--accent-color);
+    color: #000;
+    border-color: var(--accent-color);
+}
