@@ -1,7 +1,7 @@
 {
   "name": "Prodom Budownictwo",
   "short_name": "Prodom",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#FFB400",
