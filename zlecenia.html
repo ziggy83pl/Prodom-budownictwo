@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
     
-    <meta property="og:title" content="Wolne Terminy w Łomży! Szukasz Ekipy Budowlanej?" />
-    <meta property="og:description" content="Fundamenty, stany surowe, mury, wiaty. Jesteśmy gotowi do podjęcia nowych zleceń. Szybki kontakt: 574 322 909." />
+    <meta property="og:title" content="Mamy wolne terminy – PRODOM Łomża" />
+    <meta property="og:description" content="Szukasz sprawdzonej ekipy budowlanej w Łomży? Zadzwoń lub zostaw numer – oddzwonimy w 24h." />
     <meta property="og:image" content="https://ziggy83pl.github.io/Prodom-budownictwo/images/dom.jpg" />
     <meta property="og:url" content="https://ziggy83pl.github.io/Prodom-budownictwo/zlecenia.html" />
     <meta property="og:type" content="website" />
@@ -43,10 +43,39 @@
             <div class="container hero-content text-center">
                 <h1 class="hero-title text-accent">MAMY WOLNE TERMINY!</h1>
                 <p class="hero-subtitle">Poszukujesz sprawdzonej ekipy do budowy w Łomży lub okolicach?</p>
+
+                <div class="trust-stats">
+                    <div class="trust-stat">
+                        <span class="trust-number">20+</span>
+                        <span class="trust-label">lat doświadczenia</span>
+                    </div>
+                    <div class="trust-stat">
+                        <span class="trust-number">120+</span>
+                        <span class="trust-label">realizacji</span>
+                    </div>
+                    <div class="trust-stat">
+                        <span class="trust-number">Łomża</span>
+                        <span class="trust-label">i okolice</span>
+                    </div>
+                </div>
                 
                 <div class="zlecenia-cta">
                     <p class="lead">Nie czekaj na następny sezon. Zadzwoń i sprawdź, kiedy możemy zacząć!</p>
-                    <a href="tel:+48574322909" class="btn btn-primary btn-lg"><i class="fas fa-phone"></i> ZADZWOŃ TERAZ: 574 322 909</a>
+                    <a href="tel:+48574322909" class="btn btn-primary btn-lg btn-call">
+                        <i class="fas fa-phone"></i>
+                        <span class="btn-text">ZADZWOŃ TERAZ</span>
+                        <span class="btn-phone">574 322 909</span>
+                    </a>
+                    <p class="response-promise">Oddzwaniamy w 24h.</p>
+                    <form class="mini-lead-form" action="https://formsubmit.co/zbyszekszczesny83@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="Lead zlecenia - prośba o kontakt">
+                        <input type="hidden" name="_captcha" value="false">
+                        <div class="mini-lead-row">
+                            <input type="text" name="name" placeholder="Imię (opcjonalnie)">
+                            <input type="tel" name="phone" placeholder="Numer telefonu" required>
+                            <button type="submit" class="btn btn-outline btn-outline-strong">Oddzwoń do mnie</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -68,7 +97,7 @@
                 </div>
                 
                 <div class="gallery-cta mt-5">
-                    <a href="realizacje.html" class="btn btn-outline">Zobacz nasze dotychczasowe realizacje &rarr;</a>
+                    <a href="realizacje.html" class="btn btn-outline btn-outline-strong">Zobacz nasze dotychczasowe realizacje &rarr;</a>
                 </div>
             </div>
         </section>
@@ -114,7 +143,7 @@
     if (navigator.share) {
         navigator.share({
             title: 'PRODOM - Usługi Budowlane',
-            text: 'Sprawdź profesjonalne usługi budowlane i kalkulatory od PRODOM!',
+            text: 'Sprawdź profesjonalne usługi budowlane od PRODOM!',
             url: window.location.href,
         })
         .then(() => console.log('Udostępniono pomyślnie'))
@@ -143,6 +172,7 @@
     <script src="https://ziggy83pl.github.io/zasoby/magnifier.js" defer></script>
 </body>
 </html>
+
 
 
 

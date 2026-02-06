@@ -1,4 +1,4 @@
-// Zmienna globalna dla zdarzenia instalacji PWA
+﻿// Zmienna globalna dla zdarzenia instalacji PWA
 let deferredPrompt;
 
 window.addEventListener('beforeinstallprompt', (e) => {
@@ -117,24 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
         input.value = numer;
     }
 }
-
-    /* =========================================
-       3. KALKULATORY
-       ========================================= */
-    function getVal(id) {
-        const el = document.getElementById(id);
-        return el ? parseFloat(el.value.replace(',', '.')) : 0;
-    }
-
-    const btnArea = document.getElementById('calculate-area-button');
-    if (btnArea) {
-        btnArea.addEventListener('click', () => {
-            const area = (getVal('length') * getVal('width')).toFixed(2);
-            document.getElementById('total-area').innerText = area;
-        });
-    }
-
-    // Pozostałe kalkulatory (Beton, Stal) działają na tej samej zasadzie...
 
     /* =========================================
        4. ANIMACJE SCROLLOWANIA (FADE IN)
@@ -304,3 +286,4 @@ window.addEventListener('load', manageHolidayDecorations);
     }
 
 }); // KONIEC DOMContentLoaded
+
