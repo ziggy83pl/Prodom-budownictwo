@@ -1,11 +1,26 @@
 ﻿// Zmienna globalna dla zdarzenia instalacji PWA
 let deferredPrompt;
 
+function isAppInstalled() {
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+
 window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
     const installBtn = document.getElementById('install-btn');
-    if (installBtn) installBtn.style.display = 'inline-block';
+    if (installBtn && !isAppInstalled()) {
+        installBtn.classList.add('visible');
+    }
+});
+
+window.addEventListener('appinstalled', () => {
+    deferredPrompt = null;
+    const installBtn = document.getElementById('install-btn');
+    if (installBtn) {
+        installBtn.classList.remove('visible');
+        installBtn.setAttribute('aria-hidden', 'true');
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -270,8 +285,13 @@ window.addEventListener('load', manageHolidayDecorations);
     const installBtn = document.getElementById('install-btn');
     
     // Jeśli zdarzenie wystąpiło przed załadowaniem DOM
-    if (deferredPrompt && installBtn) {
-        installBtn.style.display = 'inline-block';
+    if (installBtn) {
+        if (isAppInstalled()) {
+            installBtn.classList.remove('visible');
+            installBtn.setAttribute('aria-hidden', 'true');
+        } else if (deferredPrompt) {
+            installBtn.classList.add('visible');
+        }
     }
 
     if (installBtn) {
