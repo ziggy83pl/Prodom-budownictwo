@@ -62,6 +62,49 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /* =========================================
+       1.1 UDOSTĘPNIANIE / KOPIOWANIE LINKU
+       ========================================= */
+    const copyLinkBtn = document.getElementById('copyLink');
+    if (copyLinkBtn) {
+        const originalLabel = copyLinkBtn.innerHTML;
+        const resetLabel = () => {
+            copyLinkBtn.innerHTML = originalLabel;
+            copyLinkBtn.disabled = false;
+        };
+
+        copyLinkBtn.addEventListener('click', async () => {
+            const url = window.location.href;
+            const title = document.title;
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({ title, text: title, url });
+                    return;
+                } catch (err) {
+                    // Fallback do kopiowania poniżej
+                }
+            }
+
+            try {
+                await navigator.clipboard.writeText(url);
+                copyLinkBtn.innerHTML = '<i class="fas fa-check"></i> Skopiowano link';
+                copyLinkBtn.disabled = true;
+                setTimeout(resetLabel, 2000);
+            } catch (err) {
+                const tmp = document.createElement('input');
+                tmp.value = url;
+                document.body.appendChild(tmp);
+                tmp.select();
+                document.execCommand('copy');
+                document.body.removeChild(tmp);
+                copyLinkBtn.innerHTML = '<i class="fas fa-check"></i> Skopiowano link';
+                copyLinkBtn.disabled = true;
+                setTimeout(resetLabel, 2000);
+            }
+        });
+    }
+
+    /* =========================================
     2. FORMULARZ KONTAKTOWY
     ========================================= */
     const contactForm = document.getElementById('contact-form');
