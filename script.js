@@ -1,4 +1,4 @@
-﻿﻿// Zmienna globalna dla zdarzenia instalacji PWA
+﻿﻿﻿// Zmienna globalna dla zdarzenia instalacji PWA
 let deferredPrompt;
 
 function isAppInstalled() {
@@ -109,30 +109,8 @@ document.addEventListener('DOMContentLoaded', function() {
     ========================================= */
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        const phoneInput = document.getElementById('phone');
-        if (phoneInput) {
-            phoneInput.addEventListener('input', function() {
-                formatujTelefon(this);
-            });
-        }
-
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const phoneVal = document.getElementById('phone').value.replace(/[\s-]/g, '');
-            // Walidacja polskiego numeru (9 cyfr)
-            if (!/^\d{9}$/.test(phoneVal)) {
-                alert('Proszę podać poprawny polski numer telefonu (9 cyfr).');
-                return;
-            }
-
-            const emailVal = document.getElementById('email').value;
-            // Walidacja email (musi zawierać @ i kropkę)
-            if (emailVal && (emailVal.indexOf('@') === -1 || emailVal.indexOf('.') === -1)) {
-                alert('Proszę podać poprawny adres e-mail (musi zawierać @ i kropkę).');
-                return;
-            }
-
             const btn = contactForm.querySelector('button');
             const originalText = btn.innerText;
             
@@ -185,97 +163,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    /* =========================================
-    2.1 MINI FORMULARZ (ZLECENIA)
-    ========================================= */
-    const miniLeadForm = document.getElementById('mini-lead-form');
-    if (miniLeadForm) {
-        const phoneInput = miniLeadForm.querySelector('input[name="phone"]');
-        if (phoneInput) {
-            phoneInput.addEventListener('input', function() {
-                formatujTelefon(this);
-                const btn = miniLeadForm.querySelector('button[type="submit"]');
-                const phoneVal = this.value.replace(/[\s-]/g, '');
-                
-                if (phoneVal.length === 9) {
-                    btn.style.backgroundColor = '#2ecc71';
-                    btn.style.borderColor = '#2ecc71';
-                    btn.style.color = '#fff';
-                } else {
-                    btn.style.backgroundColor = '';
-                    btn.style.borderColor = '';
-                    btn.style.color = '';
-                }
-            });
-        }
-
-        miniLeadForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = miniLeadForm.querySelector('button[type="submit"]');
-            const phoneInput = miniLeadForm.querySelector('input[name="phone"]');
-            const phoneVal = phoneInput.value.replace(/[\s-]/g, '');
-
-            // Walidacja polskiego numeru (9 cyfr)
-            if (!/^\d{9}$/.test(phoneVal)) {
-                alert('Proszę podać poprawny polski numer telefonu (9 cyfr).');
-                return;
-            }
-
-            const originalText = btn.innerText;
-            
-            btn.innerText = 'Wysyłanie...';
-            btn.disabled = true;
-
-            fetch("https://formsubmit.co/ajax/zbyszekszczesny83@gmail.com", {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify({
-                    name: miniLeadForm.querySelector('input[name="name"]').value,
-                    phone: miniLeadForm.querySelector('input[name="phone"]').value,
-                    _subject: "---> Nowe zapytanie- prośba o kontakt <---",
-                    _autoresponse: "Dziękujemy za wiadomość! Otrzymaliśmy Twoje zgłoszenie i wkrótce oddzwonimy."
-                })
-            })
-            .then(response => {
-                if (response.ok) {
-                    const formContent = miniLeadForm.querySelector('.mini-lead-row');
-                    formContent.style.display = 'none';
-
-                    const successDiv = document.createElement('div');
-                    successDiv.className = 'form-success';
-                    successDiv.style.padding = "20px";
-                    successDiv.innerHTML = `
-                        <h3 style="font-size: 1.2rem; margin-bottom: 10px;">Dziękujemy!</h3>
-                        <p>Oddzwonimy wkrótce.</p>
-                        <button type="button" id="new-call-btn" class="btn btn-outline btn-outline-strong" style="margin-top: 15px;">Poproś o kolejny telefon</button>
-                    `;
-                    miniLeadForm.appendChild(successDiv);
-
-                    document.getElementById('new-call-btn').addEventListener('click', () => {
-                        successDiv.remove();
-                        formContent.style.display = '';
-                        miniLeadForm.reset();
-                        btn.innerText = originalText;
-                        btn.disabled = false;
-                    });
-                } else { throw new Error('Błąd wysyłki'); }
-            })
-            .catch(() => {
-                alert('Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie.');
-                btn.innerText = originalText;
-                btn.disabled = false;
-            });
-        });
-    }
-
     function formatujTelefon(input) {
     let numer = input.value.replace(/\D/g, '');
-    
-    // Jeśli numer jest dłuższy niż 9 cyfr i zaczyna się od 48, usuń prefiks
-    if (numer.length > 9 && numer.startsWith('48')) {
-        numer = numer.substring(2);
-    }
-    
     numer = numer.substring(0, 9);
 
     if (numer.length > 6) {
@@ -458,5 +347,71 @@ window.addEventListener('load', manageHolidayDecorations);
             }
         });
     }
+
+    /* =========================================
+       7. GOOGLE ANALYTICS EVENTS & COOKIE CONSENT
+       ========================================= */
+    
+    // A. Śledzenie kliknięć w telefon i email (GA4)
+    const trackContactClicks = () => {
+        // Telefony
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', () => {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'click_phone', {
+                        'event_category': 'Contact',
+                        'event_label': link.href.replace('tel:', ''),
+                        'value': 1
+                    });
+                }
+            });
+        });
+
+        // Emaile
+        document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+            link.addEventListener('click', () => {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'click_email', {
+                        'event_category': 'Contact',
+                        'event_label': link.href.replace('mailto:', ''),
+                        'value': 1
+                    });
+                }
+            });
+        });
+    };
+
+    trackContactClicks();
+
+    // B. Cookie Consent (RODO)
+    const initCookieConsent = () => {
+        if (!localStorage.getItem('cookieConsent')) {
+            const banner = document.createElement('div');
+            banner.className = 'cookie-banner';
+            banner.innerHTML = `
+                <p>Ta strona korzysta z plików cookies. Dalsze korzystanie ze strony oznacza akceptację naszej <a href="polityka-prywatnosci.html" style="text-decoration: underline; color: inherit; font-weight: bold;">Polityki Prywatności</a>.</p>
+                <div class="cookie-actions">
+                    <button id="cookie-reject" class="cookie-btn cookie-reject">Odrzuć</button>
+                    <button id="cookie-accept" class="cookie-btn cookie-accept">Akceptuję</button>
+                </div>
+            `;
+            document.body.appendChild(banner);
+
+            document.getElementById('cookie-accept').addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'accepted');
+                banner.remove();
+            });
+
+            document.getElementById('cookie-reject').addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'rejected');
+                // Wyłączenie śledzenia dla tej sesji (jeśli skrypty to obsługują)
+                window['ga-disable-G-KXK83XGTXB'] = true;
+                window['ga-disable-AW-17698648399'] = true;
+                banner.remove();
+            });
+        }
+    };
+
+    initCookieConsent();
 
 }); // KONIEC DOMContentLoaded

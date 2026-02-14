@@ -11,12 +11,22 @@
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
     
+    <link rel="canonical" href="https://zamow-budowe.pages.dev/zlecenia.html" />
     <meta property="og:title" content="Mamy wolne terminy – PRODOM Łomża" />
     <meta property="og:description" content="Szukasz sprawdzonej ekipy budowlanej w Łomży? Zadzwoń lub zostaw numer – oddzwonimy w 24h." />
-    <meta property="og:image" content="https://ziggy83pl.github.io/Prodom-budownictwo/images/dom.jpg" />
-    <meta property="og:url" content="https://ziggy83pl.github.io/Prodom-budownictwo/zlecenia.html" />
+    <meta property="og:image" content="https://zamow-budowe.pages.dev/images/dom.jpg" />
+    <meta property="og:url" content="https://zamow-budowe.pages.dev/zlecenia.html" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pl_PL" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXK83XGTXB"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KXK83XGTXB'); 
+    gtag('config', 'AW-17698648399'); 
+    </script>
 </head>
 <body>
 
@@ -41,7 +51,7 @@
     <main>
         <section class="hero-zlecenia">
             <div class="container hero-content text-center">
-                <h1 class="hero-title text-accent">PRZYJMIEMY ZLEZENIE!</h1>
+                <h1 class="hero-title text-accent">MAMY WOLNE TERMINY!</h1>
                 <p class="hero-subtitle">Poszukujesz sprawdzonej ekipy do budowy w Łomży lub okolicach?</p>
 
                 <div class="trust-stats">
@@ -67,7 +77,9 @@
                         <span class="btn-phone">574 322 909</span>
                     </a>
                     <p class="response-promise">Oddzwaniamy w 24h.</p>
-                    <form id="mini-lead-form" class="mini-lead-form" onsubmit="event.preventDefault();">
+                    <form class="mini-lead-form" action="https://formsubmit.co/zbyszekszczesny83@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="Lead zlecenia - prośba o kontakt">
+                        <input type="hidden" name="_captcha" value="false">
                         <div class="mini-lead-row">
                             <input type="text" name="name" placeholder="Imię (opcjonalnie)">
                             <input type="tel" name="phone" placeholder="Numer telefonu" required>
@@ -126,13 +138,13 @@
             <div id="global-trusted-logos" style="margin-bottom: 30px;"></div>
 
             <div class="footer-info">
-                <p>&copy; 2026 Prodom Budownictwo <span style="font-size: 0.85em; opacity: 0.7;">pro v2.0.1</span> <span class="footer-separator">|</span></p>
+                <p>&copy; 2026 Prodom Budownictwo <span style="font-size: 0.85em; opacity: 0.7;">pro v2.1.0</span> <span class="footer-separator">|</span></p>
                 <p>Realizacja: <a href="https://ziggy83pl.github.io/enterprise/index.html" target="_blank" id="version-text" class="logo-tooltip" data-tooltip="Zamów profesjonalną stronę WWW">Enterprise</a></p>
             </div>
             <button id="install-btn" class="btn-install"><i class="fas fa-download"></i> Zainstaluj Aplikację</button>
         </div>
     </footer>
-    <script src="script.js?v=2.2"></script>
+    <script src="script.js"></script>
     <script>
         // JS do udostępniania
         
