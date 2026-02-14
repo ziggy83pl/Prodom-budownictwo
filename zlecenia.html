@@ -77,7 +77,7 @@
                         <span class="btn-phone">574 322 909</span>
                     </a>
                     <p class="response-promise">Oddzwaniamy w 24h.</p>
-                    <form class="mini-lead-form" action="https://formsubmit.co/zbyszekszczesny83@gmail.com" method="POST">
+                    <form class="mini-lead-form" id="mini-lead-form">
                         <input type="hidden" name="_subject" value="Lead zlecenia - prośba o kontakt">
                         <input type="hidden" name="_captcha" value="false">
                         <div class="mini-lead-row">
@@ -88,7 +88,7 @@
                     </form>
                 </div>
                 <div class="share-actions">
-                    <button id="copyLink" class="share-btn share-ghost" type="button">
+                    <button class="share-btn share-ghost action-copy-link" type="button">
                         <i class="fas fa-share-nodes"></i> Udostępnij
                     </button>
                 </div>
@@ -123,7 +123,7 @@
                 <p>Udostępnij to ogłoszenie w swoich mediach społecznościowych. Ktoś z Twoich znajomych może szukać właśnie nas!</p>
 
                 <div class="share-buttons-container">
-                    <button id="copyLink" class="share-btn" style="background-color: #333;"><i class="fas fa-link"></i> Kopiuj link</button>
+                    <button class="share-btn action-copy-link" style="background-color: #333;"><i class="fas fa-link"></i> Kopiuj link</button>
                     <button id="shareWA" class="share-btn share-wa"><i class="fab fa-whatsapp"></i> Wyślij na WhatsApp</button>
                     <button id="shareFB" class="share-btn share-fb"><i class="fab fa-facebook-f"></i> Udostępnij na Facebooku</button>
                     
@@ -173,14 +173,6 @@
 
         document.getElementById('shareWA').onclick = function() {
             window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent('Potrzebujesz ekipy budowlanej w Łomży? Polecam PRODOM! Wolne terminy i dobre ceny: ' + window.location.href));
-        };
-
-        document.getElementById('copyLink').onclick = function() {
-            navigator.clipboard.writeText(window.location.href).then(function() {
-                alert('Link został skopiowany! Możesz go teraz wkleić w SMS, Messengerze lub mailu.');
-            }, function(err) {
-                console.error('Błąd kopiowania: ', err);
-            });
         };
     </script>
     <script src="https://ziggy83pl.github.io/zasoby/portfolio-logos.js" defer></script>

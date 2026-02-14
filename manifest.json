@@ -17,5 +17,21 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Zadzwoń teraz",
+      "short_name": "Zadzwoń",
+      "description": "Szybki kontakt telefoniczny",
+      "url": "./index.html#contact",
+      "icons": [{ "src": "logo/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Nasze Realizacje",
+      "short_name": "Realizacje",
+      "description": "Zobacz zdjęcia z budowy",
+      "url": "./realizacje.html",
+      "icons": [{ "src": "logo/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
   ]
 }

@@ -1,4 +1,4 @@
-﻿﻿﻿// Zmienna globalna dla zdarzenia instalacji PWA
+﻿﻿﻿﻿﻿// Zmienna globalna dla zdarzenia instalacji PWA
 let deferredPrompt;
 
 function isAppInstalled() {
@@ -64,15 +64,16 @@ document.addEventListener('DOMContentLoaded', function() {
     /* =========================================
        1.1 UDOSTĘPNIANIE / KOPIOWANIE LINKU
        ========================================= */
-    const copyLinkBtn = document.getElementById('copyLink');
-    if (copyLinkBtn) {
-        const originalLabel = copyLinkBtn.innerHTML;
+    const copyLinkBtns = document.querySelectorAll('.action-copy-link');
+    
+    copyLinkBtns.forEach(btn => {
+        const originalLabel = btn.innerHTML;
         const resetLabel = () => {
-            copyLinkBtn.innerHTML = originalLabel;
-            copyLinkBtn.disabled = false;
+            btn.innerHTML = originalLabel;
+            btn.disabled = false;
         };
 
-        copyLinkBtn.addEventListener('click', async () => {
+        btn.addEventListener('click', async () => {
             const url = window.location.href;
             const title = document.title;
 
@@ -87,8 +88,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             try {
                 await navigator.clipboard.writeText(url);
-                copyLinkBtn.innerHTML = '<i class="fas fa-check"></i> Skopiowano link';
-                copyLinkBtn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-check"></i> Skopiowano link';
+                btn.disabled = true;
                 setTimeout(resetLabel, 2000);
             } catch (err) {
                 const tmp = document.createElement('input');
@@ -97,12 +98,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 tmp.select();
                 document.execCommand('copy');
                 document.body.removeChild(tmp);
-                copyLinkBtn.innerHTML = '<i class="fas fa-check"></i> Skopiowano link';
-                copyLinkBtn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-check"></i> Skopiowano link';
+                btn.disabled = true;
                 setTimeout(resetLabel, 2000);
             }
         });
-    }
+    });
 
     /* =========================================
     2. FORMULARZ KONTAKTOWY
@@ -163,8 +164,99 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    /* =========================================
+    2.1. MINI FORMULARZ (ZLECENIA)
+    ========================================= */
+    const miniLeadForm = document.getElementById('mini-lead-form');
+    if (miniLeadForm) {
+        const phoneInput = miniLeadForm.querySelector('input[name="phone"]');
+        const submitBtn = miniLeadForm.querySelector('button[type="submit"]');
+
+        if (phoneInput && submitBtn) {
+            phoneInput.addEventListener('input', function() {
+                formatujTelefon(this);
+                const phoneVal = this.value.replace(/[\s-]/g, '');
+                
+                if (phoneVal.length === 9) {
+                    submitBtn.style.backgroundColor = '#2ecc71'; // Green for valid
+                    submitBtn.style.borderColor = '#2ecc71';
+                    submitBtn.style.color = '#fff';
+                } else {
+                    submitBtn.style.backgroundColor = ''; // Reset to default
+                    submitBtn.style.borderColor = '';
+                    submitBtn.style.color = '';
+                }
+            });
+        }
+
+        miniLeadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const phoneVal = phoneInput.value.replace(/[\s-]/g, '');
+            if (!/^\d{9}$/.test(phoneVal)) {
+                alert('Proszę podać poprawny numer telefonu (9 cyfr, bez +48).');
+                return;
+            }
+
+            const originalText = submitBtn.innerText;
+            
+            submitBtn.innerText = 'Wysyłanie...';
+            submitBtn.disabled = true;
+
+            fetch("https://formsubmit.co/ajax/zbyszekszczesny83@gmail.com", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    name: miniLeadForm.querySelector('input[name="name"]').value,
+                    phone: phoneInput.value,
+                    _subject: "---> Nowe zapytanie- prośba o kontakt <---",
+                    _autoresponse: "Dziękujemy za wiadomość! Otrzymaliśmy Twoje zgłoszenie i wkrótce oddzwonimy."
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    const formContent = miniLeadForm.querySelector('.mini-lead-row');
+                    if (formContent) formContent.style.display = 'none';
+
+                    const successDiv = document.createElement('div');
+                    successDiv.className = 'form-success-mini';
+                    successDiv.style.cssText = "text-align: center; padding: 20px; background: rgba(255,255,255,0.9); border-radius: 5px; border: 1px solid #2ecc71;";
+                    successDiv.innerHTML = `
+                        <h3 style="font-size: 1.2rem; margin-bottom: 10px; color: #333;">Dziękujemy!</h3>
+                        <p style="color: #333;">Oddzwonimy wkrótce.</p>
+                        <button type="button" id="new-call-btn" class="btn btn-outline btn-outline-strong" style="margin-top: 15px;">Poproś o kolejny telefon</button>
+                    `;
+                    miniLeadForm.appendChild(successDiv);
+
+                    document.getElementById('new-call-btn').addEventListener('click', () => {
+                        successDiv.remove();
+                        if (formContent) formContent.style.display = '';
+                        miniLeadForm.reset();
+                        submitBtn.innerText = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.backgroundColor = '';
+                        submitBtn.style.borderColor = '';
+                        submitBtn.style.color = '';
+                    });
+                } else {
+                    throw new Error('Błąd wysyłki');
+                }
+            })
+            .catch(() => {
+                alert('Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie.');
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    }
+
     function formatujTelefon(input) {
     let numer = input.value.replace(/\D/g, '');
+    
+    // Jeśli numer jest dłuższy niż 9 cyfr i zaczyna się od 48, usuń prefiks
+    if (numer.length > 9 && numer.startsWith('48')) {
+        numer = numer.substring(2);
+    }
     numer = numer.substring(0, 9);
 
     if (numer.length > 6) {

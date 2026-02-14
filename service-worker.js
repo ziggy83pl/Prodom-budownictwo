@@ -1,5 +1,5 @@
 // service-worker.js
-const CACHE_NAME = 'prodom-cache-v6';
+const CACHE_NAME = 'prodom-cache-v8';
 const urlsToCache = [
 './',
 './index.html',
@@ -11,6 +11,7 @@ const urlsToCache = [
 ];
 
 self.addEventListener('install', (event) => {
+    self.skipWaiting(); // Wymuś natychmiastową aktywację nowego SW
 event.waitUntil(
     caches.open(CACHE_NAME)
     .then((cache) => cache.addAll(urlsToCache))
@@ -28,14 +29,32 @@ self.addEventListener('activate', (event) => {
                     }
                 })
             );
-        })
+        }).then(() => self.clients.claim()) // Przejmij kontrolę nad otwartymi stronami od razu
     );
 });
 
 self.addEventListener('fetch', (event) => {
-event.respondWith(
-    caches.match(event.request)
-    .then((response) => response || fetch(event.request))
-);
+    // Ignoruj żądania inne niż GET (np. POST do formularzy)
+    if (event.request.method !== 'GET') {
+        return;
+    }
 
+    // Strategia: Network First (Najpierw sieć, potem cache)
+    event.respondWith(
+        fetch(event.request)
+            .then((networkResponse) => {
+                // Jeśli pobranie się uda, zaktualizuj cache na przyszłość
+                if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+                    const responseToCache = networkResponse.clone();
+                    caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, responseToCache);
+                    });
+                }
+                return networkResponse;
+            })
+            .catch(() => {
+                // Jeśli brak internetu, użyj cache
+                return caches.match(event.request);
+            })
+    );
 });
