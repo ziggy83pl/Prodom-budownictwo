@@ -1,5 +1,5 @@
 // service-worker.js
-const CACHE_NAME = 'prodom-cache-v4';
+const CACHE_NAME = 'prodom-cache-v5';
 const urlsToCache = [
 './',
 './index.html',
@@ -37,4 +37,5 @@ event.respondWith(
     caches.match(event.request)
     .then((response) => response || fetch(event.request))
 );
+
 });
