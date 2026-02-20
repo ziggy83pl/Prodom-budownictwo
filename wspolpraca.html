@@ -1,7 +1,13 @@
-﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <script>
+    if (window.location.hostname.includes('github.io')) {
+        var newUrl = 'https://zamow-budowe.pages.dev' + window.location.pathname.replace('/Prodom-budownictwo', '') + window.location.search + window.location.hash;
+        window.location.replace(newUrl);
+    }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Współpraca B2B - Podwykonawstwo Budowlane Łomża</title>
     <meta name="description" content="Szukasz podwykonawcy w Łomży? Oferujemy kompleksowe stany surowe, murowanie, żelbety. Wystawiamy FV. Sprawdź Prodom.">

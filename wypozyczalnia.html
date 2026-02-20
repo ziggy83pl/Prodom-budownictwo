@@ -1,7 +1,13 @@
-﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <script>
+    if (window.location.hostname.includes('github.io')) {
+        var newUrl = 'https://zamow-budowe.pages.dev' + window.location.pathname.replace('/Prodom-budownictwo', '') + window.location.search + window.location.hash;
+        window.location.replace(newUrl);
+    }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wypożyczalnia Sprzętu Budowlanego Łomża - Prodom</title>
     <meta name="description" content="Wynajem sprzętu budowlanego w Łomży. Rusztowania, stemple, zagęszczarki, wibratory do betonu. Atrakcyjne ceny i transport.">
@@ -195,4 +201,3 @@
     <script src="https://ziggy83pl.github.io/zasoby/magnifier.js" defer></script>
 </body>
 </html>
-

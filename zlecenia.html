@@ -1,7 +1,13 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
+    <script>
+    if (window.location.hostname.includes('github.io')) {
+        var newUrl = 'https://zamow-budowe.pages.dev' + window.location.pathname.replace('/Prodom-budownictwo', '') + window.location.search + window.location.hash;
+        window.location.replace(newUrl);
+    }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Przyjmiemy Zlecenia Budowlane Łomża i Okolice - Prodom</title>
     <meta name="description" content="Szukasz doświadczonej ekipy w Łomży? Mamy wolne terminy! Fundamenty, domy jednorodzinne, mury oporowe, stany surowe. Zadzwoń: 574 322 909.">
@@ -159,25 +165,23 @@
         navigator.share({
             title: 'PRODOM - Usługi Budowlane',
             text: 'Sprawdź profesjonalne usługi budowlane od PRODOM!',
-            url: window.location.href,
+                    url: 'https://zamow-budowe.pages.dev/zlecenia.html',
         })
         .then(() => console.log('Udostępniono pomyślnie'))
         .catch((error) => console.log('Błąd udostępniania', error));
     } else {
         // Fallback dla starych przeglądarek i komputerów - zwykły Messenger lub FB
-        const url = encodeURIComponent(window.location.href);
+                const url = encodeURIComponent('https://zamow-budowe.pages.dev/zlecenia.html');
         window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, 'facebook-share-dialog', 'width=626,height=436');
     }
     return false;
 };
 
         document.getElementById('shareWA').onclick = function() {
-            window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent('Potrzebujesz ekipy budowlanej w Łomży? Polecam PRODOM! Wolne terminy i dobre ceny: ' + window.location.href));
+            window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent('Potrzebujesz ekipy budowlanej w Łomży? Polecam PRODOM! Wolne terminy i dobre ceny: https://zamow-budowe.pages.dev/zlecenia.html'));
         };
     </script>
     <script src="https://ziggy83pl.github.io/zasoby/portfolio-logos.js" defer></script>
     <script src="https://ziggy83pl.github.io/zasoby/magnifier.js" defer></script>
 </body>
 </html>
-
-

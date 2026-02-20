@@ -74,12 +74,14 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         btn.addEventListener('click', async () => {
-            const url = window.location.href;
+            // Użyj kanonicznego URL, jeśli jest dostępny, aby zawsze udostępniać poprawny adres
+            const canonicalLink = document.querySelector("link[rel='canonical']");
+            const urlToShare = canonicalLink ? canonicalLink.href : window.location.href;
             const title = document.title;
 
             if (navigator.share) {
                 try {
-                    await navigator.share({ title, text: title, url });
+                    await navigator.share({ title, text: title, url: urlToShare });
                     return;
                 } catch (err) {
                     // Fallback do kopiowania poniżej
@@ -87,13 +89,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             try {
-                await navigator.clipboard.writeText(url);
+                await navigator.clipboard.writeText(urlToShare);
                 btn.innerHTML = '<i class="fas fa-check"></i> Skopiowano link';
                 btn.disabled = true;
                 setTimeout(resetLabel, 2000);
             } catch (err) {
                 const tmp = document.createElement('input');
-                tmp.value = url;
+                tmp.value = urlToShare;
                 document.body.appendChild(tmp);
                 tmp.select();
                 document.execCommand('copy');
