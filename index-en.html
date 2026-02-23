@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,15 +30,14 @@
     <meta property="og:image" content="https://zamow-budowe.pages.dev/images/dom.jpg" /> 
     <meta property="og:url" content="https://zamow-budowe.pages.dev/index-en.html" /> <meta property="og:type" content="website" />
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KXK83XGTXB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KXK83XGTXB');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXK83XGTXB"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KXK83XGTXB'); 
+    gtag('config', 'AW-17698648399'); 
+    </script>
     
     <script type="application/ld+json">
     {
@@ -71,12 +70,13 @@
         <nav class="nav">
     <ul class="nav-list">
     <li><a href="index.html" class="nav-link">Home</a></li>
-    <li><a href="realizacje.html" class="nav-link">Projects</a></li>
-    <li><a href="inwestycje.html" class="nav-link">Investments</a></li>
+    <li><a href="projects.html" class="nav-link">Projects</a></li>
+    <li><a href="investments.html" class="nav-link">Investments</a></li>
     <li><a href="wypozyczalnia.html" class="nav-link">Rental</a></li>
     <li><a href="wspolpraca.html" class="nav-link">B2B</a></li>
     <li><a href="zlecenia.html" class="nav-link">Jobs</a></li>
     <li><a href="index.html#contact" class="nav-link btn-cta">Contact</a></li>
+    <li><a href="index.html" class="nav-link" style="color: var(--accent-color); font-weight: 800;">PL</a></li>
 </ul>
 </nav>
         </div>
@@ -168,39 +168,45 @@
                 </div>
                 
                                 <div class="services-grid">
-                    <div class="service-card">
-                        <div class="icon-box"><i class="fas fa-trowel-bricks"></i></div>
-                        <h3>Budowa domów jednorodzinnych</h3>
-                        <p>Kompleksowa realizacja od fundamentów po dach. Prowadzimy inwestycję etapami lub całościowo – zgodnie z Twoimi potrzebami.</p>
+                    <div class="service-card service-card--image-header">
+                        <header class="card-header-part header-construction">
+                            <div class="icon-box"><i class="fas fa-trowel-bricks"></i></div>
+                            <h3>Single-family house construction</h3>
+                        </header>
+                        <p>Comprehensive implementation from foundations to the roof. We manage the investment in stages or as a whole - according to your needs.</p>
                         <ul class="service-list">
-                            <li>Fundamenty</li>
-                            <li>Konstrukcja i ściany</li>
-                            <li>Strop</li>
-                            <li>Dach</li>
-</ul>
-                        <a href="#contact" class="btn btn-mini">Request o wycenę</a>
+                            <li>Foundations</li>
+                            <li>Structure and walls</li>
+                            <li>Ceiling/Floor slab</li>
+                            <li>Roof</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-mini">Request a quote</a>
                     </div>
-                    <div class="service-card">
-                        <div class="icon-box"><i class="fas fa-hard-hat"></i></div>
-                        <h3>Nadzór, geodezja i roboty ziemne</h3>
-                        <p>Zapewniamy pełną obsługę formalną oraz sprawdzonych partnerów. Oszczędzasz czas i masz kontrolę nad przebiegiem prac.</p>
+                    <div class="service-card service-card--image-header">
+                        <header class="card-header-part header-supervision">
+                            <div class="icon-box"><i class="fas fa-hard-hat"></i></div>
+                            <h3>Supervision, surveying, and earthworks</h3>
+                        </header>
+                        <p>We provide full formal support and trusted partners. You save time and have control over the work progress.</p>
                         <ul class="service-list">
-                            <li>Kierownik budowy</li>
-                            <li>Geodezja i pomiary</li>
-                            <li>Wykopy i przygotowanie terenu</li>
+                            <li>Construction manager</li>
+                            <li>Geodesy and measurements</li>
+                            <li>Excavation and site preparation</li>
 </ul>
-                        <a href="#contact" class="btn btn-mini">Request o wycenę</a>
+                        <a href="#contact" class="btn btn-mini">Request a quote</a>
                     </div>
-                    <div class="service-card">
-                        <div class="icon-box"><i class="fas fa-paint-roller"></i></div>
-                        <h3>Wykończenia i modernizacje</h3>
-                        <p>Wykańczamy wnętrza i modernizujemy obiekty z dbałością o estetykę i trwałość. Terminowo i zgodnie z projektem.</p>
+                    <div class="service-card service-card--image-header">
+                        <header class="card-header-part header-finishing">
+                            <div class="icon-box"><i class="fas fa-paint-roller"></i></div>
+                            <h3>Finishing and modernization</h3>
+                        </header>
+                        <p>We finish interiors and modernize buildings with attention to aesthetics and durability. On time and according to the project.</p>
                         <ul class="service-list">
-                            <li>Płyty GK i zabudowy</li>
-                            <li>Szpachlowanie i malowanie</li>
-                            <li>Prace wykończeniowe</li>
+                            <li>Plasterboard and structures</li>
+                            <li>Plastering and painting</li>
+                            <li>Finishing works</li>
 </ul>
-                        <a href="#contact" class="btn btn-mini">Request o wycenę</a>
+                        <a href="#contact" class="btn btn-mini">Request a quote</a>
                     </div>
                 </div></div>
 </section>
@@ -212,25 +218,25 @@
                     <h2>How does cooperation work?</h2>
                 </div>
                 <div class="process-grid">
-                    <div class="process-card">
+                    <div class="process-card" id="process-card-1">
                         <div class="process-number">1</div>
                         <h3>Contact</h3>
-                        <p>Rozmawiamy o potrzebach, terminach i budżecie, aby dopasować najlepsze rozwiązanie.</p>
+                        <p>We discuss your needs, deadlines, and budget to find the best solution.</p>
                     </div>
-                    <div class="process-card">
+                    <div class="process-card" id="process-card-2">
                         <div class="process-number">2</div>
                         <h3>Quote</h3>
-                        <p>Otrzymujesz jasny zakres prac i kosztorys bez ukrytych opłat.</p>
+                        <p>You receive a clear scope of work and a cost estimate with no hidden fees.</p>
                     </div>
-                    <div class="process-card">
+                    <div class="process-card" id="process-card-3">
                         <div class="process-number">3</div>
                         <h3>Execution</h3>
-                        <p>Prace przebiegają zgodnie z harmonogramem, a o postępach informujemy na bieżąco.</p>
+                        <p>Work proceeds according to schedule, and we keep you updated on the progress.</p>
                     </div>
-                    <div class="process-card">
+                    <div class="process-card" id="process-card-4">
                         <div class="process-number">4</div>
                         <h3>Odbiór</h3>
-                        <p>Przekazujemy gotowy etap lub całość inwestycji, z dokumentacją i omówieniem detali.</p>
+                        <p>We hand over the completed stage or the entire project, with all documentation and a detailed review.</p>
                     </div>
                 </div>
             </div>
@@ -240,7 +246,9 @@
             <div class="container">
                 <p class="clients-title">Trusted by</p>
                 <div class="clients-logos">
-    <img src="logo/arkop.png" alt="Arkop" loading="lazy">
+    <a href="https://uslugi-koparko.pages.dev/" target="_blank" rel="noopener noreferrer" title="Arkop - Backhoe loader services">
+        <img src="logo/arkop.png" alt="Arkop" loading="lazy">
+    </a>
     <img src="logo/embrus.jpg" alt="Embrus" loading="lazy">
     <img src="logo/hsbudownictwo.webp" alt="HS Construction" loading="lazy">
     <img src="logo/gmina Mały Płock.png" alt="Gmina Mały Płock" title="Gmina Mały Płock" loading="lazy">
@@ -323,7 +331,7 @@
             <div id="global-trusted-logos" style="margin-bottom: 30px;"></div>
 
             <div class="footer-info">
-                <p>&copy; 2026 Prodom Construction <span style="font-size: 0.85em; opacity: 0.7;">pro v2.1.0</span> <span class="footer-separator">|</span></p>
+                <p>&copy; 2026 Prodom Construction <span style="font-size: 0.85em; opacity: 0.7;">pro v2.1.0</span> <span class="footer-separator">|</span> <a href="privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a></p>
                 <p>Realizacja: <a href="https://ziggy83pl.github.io/enterprise/index.html" target="_blank" id="version-text" class="logo-tooltip" data-tooltip="Zamów profesjonalną stronę WWW">Enterprise</a></p>
             </div>
             <button id="install-btn" class="btn-install"><i class="fas fa-download"></i> Zainstaluj Aplikację</button>

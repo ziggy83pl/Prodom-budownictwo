@@ -379,6 +379,45 @@ img { max-width: 100%; height: auto; display: block; }
     .hero-subtitle { font-size: 1.5rem; }
 }
 
+/* === 4.5. WHY PRODOM === */
+.why-grid {
+    display: grid;
+    gap: 30px;
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop'); /* Architecture sketch */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 40px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.why-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.92); /* Strong overlay */
+    z-index: 0;
+}
+
+.why-card {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: 0.3s;
+    border: 1px solid #eee;
+}
+
+.why-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
 /* === 5. ABOUT & SERVICES (GRID) === */
 .about-grid {
     display: grid;
@@ -439,6 +478,54 @@ img { max-width: 100%; height: auto; display: block; }
 
 .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; }
 
+/* --- Service Card with Image Header (Test) --- */
+.service-card--image-header {
+    padding-top: 0; /* Remove top padding from the card itself */
+}
+
+.service-card--image-header .card-header-part {
+    position: relative;
+    z-index: 1;
+    padding: 40px;
+    margin: 0 -40px 30px -40px; /* Go full-width and add bottom margin */
+    text-align: center;
+    color: #fff;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efekt paralaksy */
+    border-radius: 8px 8px 0 0;
+    overflow: hidden; /* To contain the overlay */
+}
+
+.service-card--image-header .card-header-part::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+    z-index: -1;
+}
+
+/* Override colors for icon and h3 within the image header */
+.service-card--image-header .card-header-part .icon-box {
+    color: var(--accent-color);
+}
+.service-card--image-header .card-header-part h3 {
+    color: #fff;
+}
+
+/* Adjust margins within the header */
+.service-card--image-header .card-header-part .icon-box {
+    margin-bottom: 15px;
+}
+.service-card--image-header .card-header-part h3 {
+    margin-bottom: 0;
+}
+
+/* Specific background images for services */
+.header-construction { background-image: url('images/budowa.webp'); }
+.header-supervision { background-image: url('images/nadzur.jpg'); }
+.header-finishing { background-image: url('images/wykonczenie.jpg'); }
+
 @media (min-width: 768px) {
     .about-grid { grid-template-columns: 1fr 1fr; align-items: center; }
     .services-grid { grid-template-columns: repeat(3, 1fr); }
@@ -452,31 +539,70 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .process-card {
-    background: #fff;
-    border: 1px solid #eee;
+    position: relative;
+    z-index: 1;
     padding: 28px;
     border-radius: var(--border-radius);
-    transition: 0.3s;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
+    overflow: hidden;
+    color: #fff;
+    background-size: cover;
+    background-position: center;
+    border: none;
+    /* Animation initial state */
+    opacity: 0;
+    transform: translateY(30px);
+    will-change: opacity, transform;
+}
+
+.process-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4));
+    z-index: -1;
+    transition: background 0.3s ease;
 }
 
 .process-card:hover {
-    border-color: var(--accent-color);
     transform: translateY(-4px);
-    box-shadow: 0 16px 30px rgba(0,0,0,0.06);
+    box-shadow: 0 16px 30px rgba(0,0,0,0.2);
+}
+
+.process-card:hover::before {
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
 }
 
 .process-number {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    background: var(--accent-color);
-    color: #000;
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
+    font-size: 1.2rem;
     margin-bottom: 12px;
 }
+
+/* Staggered animation for process cards */
+.fade-in-section.is-visible .process-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+.fade-in-section.is-visible .process-card:nth-child(1) { transition-delay: 0.1s; }
+.fade-in-section.is-visible .process-card:nth-child(2) { transition-delay: 0.2s; }
+.fade-in-section.is-visible .process-card:nth-child(3) { transition-delay: 0.3s; }
+.fade-in-section.is-visible .process-card:nth-child(4) { transition-delay: 0.4s; }
+
+/* Background images for process cards */
+#process-card-1 { background-image: url('https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1200&auto=format&fit=crop'); } /* Telefon */
+#process-card-2 { background-image: url('images/kalkulator.webp'); } /* Kalkulator */
+#process-card-3 { background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200&auto=format&fit=crop'); } /* Budowa */
+#process-card-4 { background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop'); } /* Uścisk dłoni */
 
 @media (min-width: 768px) {
     .process-grid { grid-template-columns: repeat(2, 1fr); }
@@ -500,6 +626,11 @@ img { max-width: 100%; height: auto; display: block; }
     width: auto;
 }
 .clients-logos img:hover { opacity: 1; filter: grayscale(0); transform: scale(1.1); }
+.clients-logos img.highlight {
+    opacity: 1;
+    filter: grayscale(0);
+    transform: scale(1.1);
+}
 
 /* === 8. CONTACT & FOOTER === */
 .contact-wrapper {
@@ -589,7 +720,13 @@ img { max-width: 100%; height: auto; display: block; }
     border: 1px solid #eee;
     overflow: hidden;
     border-radius: var(--border-radius);
-    transition: 0.3s;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
+}
+
+/* Initial state only when inside fade-in-section */
+.fade-in-section .gallery-item {
+    opacity: 0;
+    transform: translateY(30px);
 }
 
 .gallery-item:hover {
@@ -677,6 +814,18 @@ img { max-width: 100%; height: auto; display: block; }
     font-size: 0.85rem;
     color: #666;
 }
+
+/* Staggered animation for gallery items */
+.fade-in-section.is-visible .gallery-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+.fade-in-section.is-visible .gallery-item:nth-child(1) { transition-delay: 0.1s; }
+.fade-in-section.is-visible .gallery-item:nth-child(2) { transition-delay: 0.2s; }
+.fade-in-section.is-visible .gallery-item:nth-child(3) { transition-delay: 0.3s; }
+.fade-in-section.is-visible .gallery-item:nth-child(4) { transition-delay: 0.4s; }
+.fade-in-section.is-visible .gallery-item:nth-child(5) { transition-delay: 0.5s; }
+.fade-in-section.is-visible .gallery-item:nth-child(6) { transition-delay: 0.6s; }
 
 /* Responsywność Galerii */
 @media (min-width: 768px) {
@@ -843,18 +992,71 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .service-item {
-    background: #fff;
-    padding: 15px;
+    position: relative;
+    z-index: 1;
+    background-color: #333;
+    color: #fff;
+    padding: 30px 20px;
     border-left: 5px solid var(--accent-color);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 600;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
+}
+
+/* Initial state only when inside fade-in-section */
+.fade-in-section .service-item {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.service-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75); /* Ciemna nakładka dla czytelności */
+    z-index: -1;
+    transition: background 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.service-item:hover::before {
+    background: rgba(0,0,0,0.5); /* Jaśniejsza nakładka po najechaniu */
 }
 
 .service-item i {
     color: var(--accent-color);
     margin-right: 10px;
 }
+
+/* Staggered animation for service items (Zlecenia) */
+.fade-in-section.is-visible .service-item {
+    opacity: 1;
+    transform: translateY(0);
+    transform: none;
+}
+.fade-in-section.is-visible .service-item:nth-child(1) { transition-delay: 0.1s; }
+.fade-in-section.is-visible .service-item:nth-child(2) { transition-delay: 0.2s; }
+.fade-in-section.is-visible .service-item:nth-child(3) { transition-delay: 0.3s; }
+.fade-in-section.is-visible .service-item:nth-child(4) { transition-delay: 0.4s; }
+.fade-in-section.is-visible .service-item:nth-child(5) { transition-delay: 0.5s; }
+.fade-in-section.is-visible .service-item:nth-child(6) { transition-delay: 0.6s; }
+
+/* Background images for service items (Zlecenia) */
+#service-item-1 { background-image: url('images/hala.webp'); } /* Fundamenty */
+#service-item-2 { background-image: url('images/dom.jpg'); } /* Dom surowy */
+#service-item-3 { background-image: url('images/koszyk.jpg'); } /* Mury/Beton */
+#service-item-4 { background-image: url('images/wiata.jpg'); } /* Garaż */
+#service-item-5 { background-image: url('images/muroporowy.webp'); } /* Murowanie */
+#service-item-6 { background-image: url('images/izolacja.jpeg'); } /* Izolacje */
 
 /* Przyciski Udostępniania */
 .share-buttons-container {

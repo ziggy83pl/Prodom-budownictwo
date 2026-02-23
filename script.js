@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿// Zmienna globalna dla zdarzenia instalacji PWA
+﻿﻿﻿﻿﻿﻿﻿// Zmienna globalna dla zdarzenia instalacji PWA
 let deferredPrompt;
 
 function isAppInstalled() {
@@ -507,5 +507,37 @@ window.addEventListener('load', manageHolidayDecorations);
     };
 
     initCookieConsent();
+
+    /* =========================================
+       8. ANIMACJA LOGOTYPÓW
+       ========================================= */
+    const logoContainer = document.querySelector('.clients-logos');
+    if (logoContainer) {
+        const logos = Array.from(logoContainer.children); // Pobieramy wszystkie elementy (img, a)
+        if (logos.length > 0) {
+            let lastIndex = -1;
+
+            setInterval(() => {
+                let randomIndex;
+                // Pętla, aby nie wylosować tego samego logo dwa razy z rzędu
+                do {
+                    randomIndex = Math.floor(Math.random() * logos.length);
+                } while (logos.length > 1 && randomIndex === lastIndex);
+                
+                lastIndex = randomIndex;
+                
+                const logoElement = logos[randomIndex];
+                // Znajdź tag <img>, niezależnie czy jest bezpośrednio, czy wewnątrz linku <a>
+                const img = logoElement.tagName === 'IMG' ? logoElement : logoElement.querySelector('img');
+
+                if (img) {
+                    img.classList.add('highlight');
+                    
+                    // Po 0.5 sekundy usuń podświetlenie
+                    setTimeout(() => { img.classList.remove('highlight'); }, 500);
+                }
+            }, 2500); // Powtarzaj co 2.5 sekundy
+        }
+    }
 
 }); // KONIEC DOMContentLoaded

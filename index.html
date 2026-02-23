@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -30,15 +30,15 @@
     <meta property="og:image" content="https://zamow-budowe.pages.dev/images/dom.jpg" /> 
     <meta property="og:url" content="https://zamow-budowe.pages.dev/" /> <meta property="og:type" content="website" />
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KXK83XGTXB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KXK83XGTXB');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXK83XGTXB"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KXK83XGTXB'); 
+    gtag('config', 'AW-17698648399'); 
+    </script>
+    
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -76,6 +76,7 @@
     <li><a href="wspolpraca.html" class="nav-link">Dla Firm (B2B)</a></li>
     <li><a href="zlecenia.html" class="nav-link">Zlecenia</a></li>
     <li><a href="index.html#contact" class="nav-link btn-cta">Kontakt</a></li>
+    <li><a href="index-en.html" class="nav-link" style="color: var(--accent-color); font-weight: 800;">EN</a></li>
 </ul>
 </nav>
         </div>
@@ -167,21 +168,25 @@
                 </div>
                 
                                 <div class="services-grid">
-                    <div class="service-card">
-                        <div class="icon-box"><i class="fas fa-trowel-bricks"></i></div>
-                        <h3>Budowa domów jednorodzinnych</h3>
+                    <div class="service-card service-card--image-header">
+                        <header class="card-header-part header-construction">
+                            <div class="icon-box"><i class="fas fa-trowel-bricks"></i></div>
+                            <h3>Budowa domów jednorodzinnych</h3>
+                        </header>
                         <p>Kompleksowa realizacja od fundamentów po dach. Prowadzimy inwestycję etapami lub całościowo – zgodnie z Twoimi potrzebami.</p>
                         <ul class="service-list">
                             <li>Fundamenty</li>
                             <li>Konstrukcja i ściany</li>
                             <li>Strop</li>
                             <li>Dach</li>
-</ul>
+                        </ul>
                         <a href="#contact" class="btn btn-mini">Zapytaj o wycenę</a>
                     </div>
-                    <div class="service-card">
-                        <div class="icon-box"><i class="fas fa-hard-hat"></i></div>
-                        <h3>Nadzór, geodezja i roboty ziemne</h3>
+                    <div class="service-card service-card--image-header">
+                        <header class="card-header-part header-supervision">
+                            <div class="icon-box"><i class="fas fa-hard-hat"></i></div>
+                            <h3>Nadzór, geodezja i roboty ziemne</h3>
+                        </header>
                         <p>Zapewniamy pełną obsługę formalną oraz sprawdzonych partnerów. Oszczędzasz czas i masz kontrolę nad przebiegiem prac.</p>
                         <ul class="service-list">
                             <li>Kierownik budowy</li>
@@ -190,9 +195,11 @@
 </ul>
                         <a href="#contact" class="btn btn-mini">Zapytaj o wycenę</a>
                     </div>
-                    <div class="service-card">
-                        <div class="icon-box"><i class="fas fa-paint-roller"></i></div>
-                        <h3>Wykończenia i modernizacje</h3>
+                    <div class="service-card service-card--image-header">
+                        <header class="card-header-part header-finishing">
+                            <div class="icon-box"><i class="fas fa-paint-roller"></i></div>
+                            <h3>Wykończenia i modernizacje</h3>
+                        </header>
                         <p>Wykańczamy wnętrza i modernizujemy obiekty z dbałością o estetykę i trwałość. Terminowo i zgodnie z projektem.</p>
                         <ul class="service-list">
                             <li>Płyty GK i zabudowy</li>
@@ -211,22 +218,22 @@
                     <h2>Jak wygląda współpraca?</h2>
                 </div>
                 <div class="process-grid">
-                    <div class="process-card">
+                    <div class="process-card" id="process-card-1">
                         <div class="process-number">1</div>
                         <h3>Kontakt</h3>
                         <p>Rozmawiamy o potrzebach, terminach i budżecie, aby dopasować najlepsze rozwiązanie.</p>
                     </div>
-                    <div class="process-card">
+                    <div class="process-card" id="process-card-2">
                         <div class="process-number">2</div>
                         <h3>Wycena</h3>
                         <p>Otrzymujesz jasny zakres prac i kosztorys bez ukrytych opłat.</p>
                     </div>
-                    <div class="process-card">
+                    <div class="process-card" id="process-card-3">
                         <div class="process-number">3</div>
                         <h3>Realizacja</h3>
                         <p>Prace przebiegają zgodnie z harmonogramem, a o postępach informujemy na bieżąco.</p>
                     </div>
-                    <div class="process-card">
+                    <div class="process-card" id="process-card-4">
                         <div class="process-number">4</div>
                         <h3>Odbiór</h3>
                         <p>Przekazujemy gotowy etap lub całość inwestycji, z dokumentacją i omówieniem detali.</p>
@@ -239,7 +246,9 @@
             <div class="container">
                 <p class="clients-title">Zaufali nam</p>
                 <div class="clients-logos">
-    <img src="logo/arkop.png" alt="Arkop" loading="lazy">
+    <a href="https://uslugi-koparko.pages.dev/" target="_blank" rel="noopener noreferrer" title="Arkop - Usługi koparko-ładowarką">
+        <img src="logo/arkop.png" alt="Arkop" loading="lazy">
+    </a>
     <img src="logo/embrus.jpg" alt="Embrus" loading="lazy">
     <img src="logo/hsbudownictwo.webp" alt="HS Budownictwo" loading="lazy">
     <img src="logo/gmina Mały Płock.png" alt="Gmina Mały Płock" title="Gmina Mały Płock" loading="lazy">
@@ -322,7 +331,7 @@
             <div id="global-trusted-logos" style="margin-bottom: 30px;"></div>
 
             <div class="footer-info">
-                <p>&copy; 2026 Prodom Budownictwo <span style="font-size: 0.85em; opacity: 0.7;">pro v2.1.0</span> <span class="footer-separator">|</span></p>
+                <p>&copy; 2026 Prodom Budownictwo <span style="font-size: 0.85em; opacity: 0.7;">pro v2.1.0</span> <span class="footer-separator">|</span> <a href="polityka-prywatnosci.html" style="color: inherit; text-decoration: underline;">Polityka Prywatności</a></p>
                 <p>Realizacja: <a href="https://wizytowka-online.pages.dev/" target="_blank" id="version-text" class="logo-tooltip" data-tooltip="Zamów profesjonalną stronę WWW">Enterprise</a></p>
             </div>
             <button id="install-btn" class="btn-install"><i class="fas fa-download"></i> Zainstaluj Aplikację</button>
@@ -334,5 +343,3 @@
     <script src="https://ziggy83pl.github.io/zasoby/magnifier.js" defer></script>
 </body>
 </html>
-
-
