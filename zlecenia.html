@@ -1,4 +1,4 @@
-﻿﻿﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -11,27 +11,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Przyjmiemy Zlecenia Budowlane Łomża i Okolice - Prodom</title>
     <meta name="description" content="Szukasz doświadczonej ekipy w Łomży? Mamy wolne terminy! Fundamenty, domy jednorodzinne, mury oporowe, stany surowe. Zadzwoń: 574 322 909.">
+
+    <link rel="canonical" href="https://zamow-budowe.pages.dev/zlecenia.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PRODOM Budownictwo" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:title" content="Przyjmiemy Zlecenia Budowlane Łomża i Okolice - Prodom" />
+    <meta property="og:description" content="Szukasz doświadczonej ekipy w Łomży? Mamy wolne terminy! Fundamenty, domy jednorodzinne, mury oporowe, stany surowe. Zadzwoń: 574 322 909." />
+    <meta property="og:url" content="https://zamow-budowe.pages.dev/zlecenia.html" />
+    <meta property="og:image" content="https://zamow-budowe.pages.dev/images/dom.jpg" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="747" />
+    <meta property="og:image:alt" content="PRODOM Budownictwo" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Przyjmiemy Zlecenia Budowlane Łomża i Okolice - Prodom" />
+    <meta name="twitter:description" content="Szukasz doświadczonej ekipy w Łomży? Mamy wolne terminy! Fundamenty, domy jednorodzinne, mury oporowe, stany surowe. Zadzwoń: 574 322 909." />
+    <meta name="twitter:image" content="https://zamow-budowe.pages.dev/images/dom.jpg" />
+    <meta name="twitter:url" content="https://zamow-budowe.pages.dev/zlecenia.html" />
     <link rel="icon" type="image/x-icon" href="logo/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
     
-    <link rel="canonical" href="https://zamow-budowe.pages.dev/zlecenia.html" />
-    <meta property="og:title" content="Przyjmiemy zlecenie – PRODOM Łomża" />
-    <meta property="og:description" content="Szukasz sprawdzonej ekipy budowlanej w Łomży? Zadzwoń lub zostaw numer – oddzwonimy w 24h." />
-    <meta property="og:image" content="https://zamow-budowe.pages.dev/images/dom.jpg" />
-    <meta property="og:url" content="https://zamow-budowe.pages.dev/zlecenia.html" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="pl_PL" />
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXK83XGTXB"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KXK83XGTXB"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-KXK83XGTXB'); 
-    gtag('config', 'AW-17698648399'); 
+
+    gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+    });
+
+    const savedConsent = localStorage.getItem('cookieConsent');
+    if (savedConsent === 'accepted') {
+        gtag('consent', 'update', {
+            analytics_storage: 'granted',
+            ad_storage: 'granted',
+            ad_user_data: 'granted',
+            ad_personalization: 'granted'
+        });
+        gtag('config', 'G-KXK83XGTXB');
+        gtag('config', 'AW-17698648399');
+    } else if (savedConsent === 'rejected') {
+        window['ga-disable-G-KXK83XGTXB'] = true;
+        window['ga-disable-AW-17698648399'] = true;
+    }
     </script>
 </head>
 <body>
@@ -48,6 +79,7 @@
     <li><a href="wypozyczalnia.html" class="nav-link">Wypożyczalnia</a></li>
     <li><a href="wspolpraca.html" class="nav-link">Dla Firm (B2B)</a></li>
     <li><a href="zlecenia.html" class="nav-link active">Zlecenia</a></li>
+    <li><a href="praca.html" class="nav-link">Praca</a></li>
     <li><a href="index.html#contact" class="nav-link btn-cta">Kontakt</a></li>
 </ul>
             </nav>
@@ -185,3 +217,5 @@
     <script src="https://ziggy83pl.github.io/zasoby/magnifier.js" defer></script>
 </body>
 </html>
+
+

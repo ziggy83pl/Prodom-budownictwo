@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -11,6 +11,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budowa domów Łomża, Podlaskie – PRODOM Budownictwo</title>
     <meta name="description" content="Budowa domów Łomża i kompleksowe usługi budowlane w woj. podlaskim. Terminowo, solidnie i bez kompromisów. PRODOM Budownictwo.">
+
+    <link rel="canonical" href="https://zamow-budowe.pages.dev/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PRODOM Budownictwo" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:title" content="Budowa domów Łomża, Podlaskie – PRODOM Budownictwo" />
+    <meta property="og:description" content="Budowa domów Łomża i kompleksowe usługi budowlane w woj. podlaskim. Terminowo, solidnie i bez kompromisów. PRODOM Budownictwo." />
+    <meta property="og:url" content="https://zamow-budowe.pages.dev/" />
+    <meta property="og:image" content="https://zamow-budowe.pages.dev/images/dom.jpg" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="747" />
+    <meta property="og:image:alt" content="PRODOM Budownictwo" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Budowa domów Łomża, Podlaskie – PRODOM Budownictwo" />
+    <meta name="twitter:description" content="Budowa domów Łomża i kompleksowe usługi budowlane w woj. podlaskim. Terminowo, solidnie i bez kompromisów. PRODOM Budownictwo." />
+    <meta name="twitter:image" content="https://zamow-budowe.pages.dev/images/dom.jpg" />
+    <meta name="twitter:url" content="https://zamow-budowe.pages.dev/" />
     <meta name="keywords" content="budowa domów Łomża, usługi budowlane Podlaskie, firma budowlana Łomża, fundamenty, stropy, stany surowe">
     
     <link rel="icon" type="image/x-icon" href="logo/favicon.ico">
@@ -22,21 +40,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
+    
 
-    <link rel="canonical" href="https://zamow-budowe.pages.dev/" />
-    <meta property="og:title" content="Budowa domów Łomża – PRODOM Budownictwo" />
-    <meta property="og:description" content="Budujemy domy i realizujemy inwestycje budowlane na terenie woj. podlaskiego. Terminowo, solidnie i bez kompromisów." />
-    <meta property="og:image" content="https://zamow-budowe.pages.dev/images/dom.jpg" /> 
-    <meta property="og:url" content="https://zamow-budowe.pages.dev/" /> <meta property="og:type" content="website" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KXK83XGTXB"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-KXK83XGTXB'); 
-    gtag('config', 'AW-17698648399'); 
+
+    gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+    });
+
+    const savedConsent = localStorage.getItem('cookieConsent');
+    if (savedConsent === 'accepted') {
+        gtag('consent', 'update', {
+            analytics_storage: 'granted',
+            ad_storage: 'granted',
+            ad_user_data: 'granted',
+            ad_personalization: 'granted'
+        });
+        gtag('config', 'G-KXK83XGTXB');
+        gtag('config', 'AW-17698648399');
+    } else if (savedConsent === 'rejected') {
+        window['ga-disable-G-KXK83XGTXB'] = true;
+        window['ga-disable-AW-17698648399'] = true;
+    }
     </script>
     
     <script type="application/ld+json">
@@ -75,6 +108,7 @@
     <li><a href="wypozyczalnia.html" class="nav-link">Wypożyczalnia</a></li>
     <li><a href="wspolpraca.html" class="nav-link">Dla Firm (B2B)</a></li>
     <li><a href="zlecenia.html" class="nav-link">Zlecenia</a></li>
+    <li><a href="praca.html" class="nav-link">Praca</a></li>
     <li><a href="index.html#contact" class="nav-link btn-cta">Kontakt</a></li>
     <li><a href="index-en.html" class="nav-link" style="color: var(--accent-color); font-weight: 800;">EN</a></li>
 </ul>
@@ -283,6 +317,52 @@
             </div>
         </section>
 
+        <section id="praca" class="section bg-light fade-in-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">PRACA</span>
+                    <h2>Dołącz do naszej ekipy</h2>
+                    <p>Szukamy osób do stałej współpracy przy realizacjach budowlanych w Łomży i okolicach.</p>
+                </div>
+                <div class="jobs-grid">
+                    <article class="job-card">
+                        <h3>Murarz</h3>
+                        <p>Prace murarskie przy domach jednorodzinnych i obiektach usługowych.</p>
+                        <img src="images/murarz.png" alt="Murarz" class="job-photo" loading="lazy">
+                        <div class="share-actions">
+                            <button class="btn btn-mini action-copy-link" type="button" data-share-title="Murarz - praca w PRODOM" data-share-text="PRODOM rekrutuje: Murarz. Praca w Łomży i okolicy." data-success-label="<i class='fas fa-check'></i> Skopiowano ofertę">
+                                <i class="fas fa-share-nodes"></i> Udostępnij ofertę
+                            </button>
+                        </div>
+                    </article>
+                    <article class="job-card">
+                        <h3>Pomocnik budowlany</h3>
+                        <p>Wsparcie brygady na budowie, przygotowanie materiałów i organizacja stanowiska pracy.</p>
+                        <img src="images/pomocnik.png" alt="Pomocnik budowlany" class="job-photo" loading="lazy">
+                        <div class="share-actions">
+                            <button class="btn btn-mini action-copy-link" type="button" data-share-title="Pomocnik budowlany - praca w PRODOM" data-share-text="PRODOM rekrutuje: Pomocnik budowlany. Praca w Łomży i okolicy." data-success-label="<i class='fas fa-check'></i> Skopiowano ofertę">
+                                <i class="fas fa-share-nodes"></i> Udostępnij ofertę
+                            </button>
+                        </div>
+                    </article>
+                    <article class="job-card">
+                        <h3>Zbrojarz</h3>
+                        <p>Wykonywanie zbrojeń fundamentów, stropów i elementów żelbetowych zgodnie z projektem.</p>
+                        <img src="images/zbrojarz.png" alt="Zbrojarz" class="job-photo" loading="lazy">
+                        <div class="share-actions">
+                            <button class="btn btn-mini action-copy-link" type="button" data-share-title="Zbrojarz - praca w PRODOM" data-share-text="PRODOM rekrutuje: Zbrojarz. Praca w Łomży i okolicy." data-success-label="<i class='fas fa-check'></i> Skopiowano ofertę">
+                                <i class="fas fa-share-nodes"></i> Udostępnij ofertę
+                            </button>
+                        </div>
+                    </article>
+                </div>
+                <div class="gallery-cta">
+                    <p>Chcesz do nas dołączyć? Zadzwoń lub wyślij krótką informację o swoim doświadczeniu.</p>
+                    <a href="praca.html" class="btn btn-primary">Zobacz szczegóły i aplikuj</a>
+                </div>
+            </div>
+        </section>
+
         <section id="clients" class="section clients bg-light fade-in-section">
             <div class="container">
                 <p class="clients-title">Zaufali nam</p>
@@ -384,3 +464,8 @@
     <script src="https://ziggy83pl.github.io/zasoby/magnifier.js" defer></script>
 </body>
 </html>
+
+
+
+
+
