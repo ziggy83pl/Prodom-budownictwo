@@ -1,5 +1,5 @@
 // service-worker.js
-const CACHE_NAME = 'prodom-cache-v14';
+const CACHE_NAME = 'prodom-cache-v9';
 const urlsToCache = [
 './',
 './index.html',
@@ -58,8 +58,4 @@ self.addEventListener('fetch', (event) => {
             })
     );
 });
-
-
-
-
 

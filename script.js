@@ -33,18 +33,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const nav = document.querySelector('.nav');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.boxShadow = "0 2px 20px rgba(0,0,0,0.1)";
-        } else {
-            header.style.boxShadow = "none";
-        }
-    });
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.boxShadow = "0 2px 20px rgba(0,0,0,0.1)";
+            } else {
+                header.style.boxShadow = "none";
+            }
+        });
+    }
 
     if (menuBtn) {
         menuBtn.addEventListener('click', () => {
             nav.classList.toggle('active');
             const icon = menuBtn.querySelector('i');
+            if (!icon) return;
             if (nav.classList.contains('active')) {
                 icon.classList.replace('fa-bars', 'fa-times');
             } else {
@@ -55,8 +58,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
+            if (!nav || !menuBtn) return;
             nav.classList.remove('active');
             const icon = menuBtn.querySelector('i');
+            if (!icon) return;
             icon.classList.replace('fa-times', 'fa-bars');
         });
     });
@@ -76,12 +81,16 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', async () => {
             // Użyj kanonicznego URL, jeśli jest dostępny, aby zawsze udostępniać poprawny adres
             const canonicalLink = document.querySelector("link[rel='canonical']");
-            const urlToShare = canonicalLink ? canonicalLink.href : window.location.href;
-            const title = document.title;
+            const urlToShare = btn.dataset.shareUrl || (canonicalLink ? canonicalLink.href : window.location.href);
+            const pageTitle = document.title;
+            const shareTitle = btn.dataset.shareTitle || pageTitle;
+            const shareText = btn.dataset.shareText || shareTitle;
+            const clipboardText = btn.dataset.shareText ? `${shareText} ${urlToShare}` : urlToShare;
+            const successLabel = btn.dataset.successLabel || '<i class="fas fa-check"></i> Skopiowano link';
 
             if (navigator.share) {
                 try {
-                    await navigator.share({ title, text: title, url: urlToShare });
+                    await navigator.share({ title: shareTitle, text: shareText, url: urlToShare });
                     return;
                 } catch (err) {
                     // Fallback do kopiowania poniżej
@@ -89,18 +98,18 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             try {
-                await navigator.clipboard.writeText(urlToShare);
-                btn.innerHTML = '<i class="fas fa-check"></i> Skopiowano link';
+                await navigator.clipboard.writeText(clipboardText);
+                btn.innerHTML = successLabel;
                 btn.disabled = true;
                 setTimeout(resetLabel, 2000);
             } catch (err) {
                 const tmp = document.createElement('input');
-                tmp.value = urlToShare;
+                tmp.value = clipboardText;
                 document.body.appendChild(tmp);
                 tmp.select();
                 document.execCommand('copy');
                 document.body.removeChild(tmp);
-                btn.innerHTML = '<i class="fas fa-check"></i> Skopiowano link';
+                btn.innerHTML = successLabel;
                 btn.disabled = true;
                 setTimeout(resetLabel, 2000);
             }
@@ -327,20 +336,21 @@ document.addEventListener('DOMContentLoaded', function() {
     counters.forEach(counter => counterObserver.observe(counter));
 
     /* =========================================
-   INTELIGENTNY SYSTEM ŚWIĄTECZNY 2026
+   INTELIGENTNY SYSTEM ŚWIĄTECZNY
    ========================================= */
 function manageHolidayDecorations() {
     const now = new Date();
+    const currentYear = now.getFullYear();
     const month = now.getMonth(); // 0-styczeń, 3-kwiecień, 4-maj, 11-grudzień
     const date = now.getDate();
 
     let holiday = null;
 
-    // Definicje Świąt 2026
+    // Definicje świąt
     if ((month === 11 && date === 31) || (month === 0 && date === 1)) {
         holiday = {
             type: 'sylwester',
-            text: '🎉 Szczęśliwego Nowego Roku 2026 życzy zespół PRODOM! 🥂',
+            text: `🎉 Szczęśliwego Nowego Roku ${currentYear} życzy zespół PRODOM! 🥂`,
             icon: '🥳',
             effect: 'confetti'
         };
@@ -478,8 +488,48 @@ window.addEventListener('load', manageHolidayDecorations);
     trackContactClicks();
 
     // B. Cookie Consent (RODO)
+    const GA_MEASUREMENT_ID = 'G-KXK83XGTXB';
+    const GA_ADS_ID = 'AW-17698648399';
+
+    const enableAnalytics = () => {
+        window[`ga-disable-${GA_MEASUREMENT_ID}`] = false;
+        window[`ga-disable-${GA_ADS_ID}`] = false;
+        if (typeof gtag === 'function') {
+            gtag('consent', 'update', {
+                analytics_storage: 'granted',
+                ad_storage: 'granted',
+                ad_user_data: 'granted',
+                ad_personalization: 'granted'
+            });
+            gtag('config', GA_MEASUREMENT_ID);
+            gtag('config', GA_ADS_ID);
+        }
+    };
+
+    const disableAnalytics = () => {
+        window[`ga-disable-${GA_MEASUREMENT_ID}`] = true;
+        window[`ga-disable-${GA_ADS_ID}`] = true;
+        if (typeof gtag === 'function') {
+            gtag('consent', 'update', {
+                analytics_storage: 'denied',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied'
+            });
+        }
+    };
+
     const initCookieConsent = () => {
-        if (!localStorage.getItem('cookieConsent')) {
+        const savedConsent = localStorage.getItem('cookieConsent');
+        if (savedConsent === 'accepted') {
+            return;
+        }
+        if (savedConsent === 'rejected') {
+            disableAnalytics();
+            return;
+        }
+
+        if (!savedConsent) {
             const banner = document.createElement('div');
             banner.className = 'cookie-banner';
             banner.innerHTML = `
@@ -493,14 +543,13 @@ window.addEventListener('load', manageHolidayDecorations);
 
             document.getElementById('cookie-accept').addEventListener('click', () => {
                 localStorage.setItem('cookieConsent', 'accepted');
+                enableAnalytics();
                 banner.remove();
             });
 
             document.getElementById('cookie-reject').addEventListener('click', () => {
                 localStorage.setItem('cookieConsent', 'rejected');
-                // Wyłączenie śledzenia dla tej sesji (jeśli skrypty to obsługują)
-                window['ga-disable-G-KXK83XGTXB'] = true;
-                window['ga-disable-AW-17698648399'] = true;
+                disableAnalytics();
                 banner.remove();
             });
         }
