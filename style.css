@@ -1334,6 +1334,16 @@ img { max-width: 100%; height: auto; display: block; }
     transform: none;
 }
 
+/* Na małych ekranach wymuszamy pełną widoczność sekcji z ofertami pracy */
+@media (max-width: 767px) {
+    .no-fade-mobile,
+    .no-fade-mobile.is-visible {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
 /* === DODATEK: PARTNERZY I LOGOTYPY (z Enterprise) === */
 .trusted-logos {
     display: flex;
