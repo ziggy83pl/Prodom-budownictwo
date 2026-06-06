@@ -442,7 +442,8 @@ img { max-width: 100%; height: auto; display: block; }
     content: '';
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/strop2.png');
+    /* Reduced overlay opacity so background image is more visible */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/strop2.png');
     background-size: cover;
     background-position: center;
     z-index: -1;
@@ -1166,7 +1167,7 @@ img { max-width: 100%; height: auto; display: block; }
 .service-item {
     position: relative;
     z-index: 1;
-    background-color: #333;
+    background-color: #f8f8f8;
     color: #fff;
     padding: 30px 20px;
     border-left: 5px solid var(--accent-color);
@@ -1178,6 +1179,7 @@ img { max-width: 100%; height: auto; display: block; }
     background-position: center;
     background-attachment: fixed;
     transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6), 0 0 4px rgba(0,0,0,0.5);
 }
 
 /* Initial state only when inside fade-in-section */
@@ -1190,7 +1192,7 @@ img { max-width: 100%; height: auto; display: block; }
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.75); /* Ciemna nakładka dla czytelności */
+    background: transparent;
     z-index: -1;
     transition: background 0.3s ease;
 }
@@ -1221,6 +1223,9 @@ img { max-width: 100%; height: auto; display: block; }
 .fade-in-section.is-visible .service-item:nth-child(4) { transition-delay: 0.4s; }
 .fade-in-section.is-visible .service-item:nth-child(5) { transition-delay: 0.5s; }
 .fade-in-section.is-visible .service-item:nth-child(6) { transition-delay: 0.6s; }
+.fade-in-section.is-visible .service-item:nth-child(7) { transition-delay: 0.7s; }
+.fade-in-section.is-visible .service-item:nth-child(8) { transition-delay: 0.8s; }
+.fade-in-section.is-visible .service-item:nth-child(9) { transition-delay: 0.9s; }
 
 /* Background images for service items (Zlecenia) */
 #service-item-1 { background-image: url('images/hala.webp'); } /* Fundamenty */
@@ -1229,6 +1234,9 @@ img { max-width: 100%; height: auto; display: block; }
 #service-item-4 { background-image: url('images/wiata.jpg'); } /* Garaż */
 #service-item-5 { background-image: url('images/muroporowy.webp'); } /* Murowanie */
 #service-item-6 { background-image: url('images/izolacja.jpeg'); } /* Izolacje */
+#service-item-7 { background-image: url('images/kanalizacja1.webp'); } /* Kanalizacja */
+#service-item-8 { background-image: url('images/woda1.webp'); } /* Woda użytkowa */
+#service-item-9 { background-image: url('images/elektryka1.webp'); } /* Elektryka */
 
 /* Przyciski Udostępniania */
 .share-buttons-container {
@@ -1645,3 +1653,180 @@ body.holiday-mode .header { top: 50px !important; }
     }
 }
 
+/* === 12.5. GALLERY MODAL (ZLECENIA) === */
+.gallery-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.gallery-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+    cursor: pointer;
+}
+
+.gallery-modal-content {
+    position: relative;
+    z-index: 1001;
+    background: #fff;
+    border-radius: 12px;
+    max-width: 900px;
+    width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1002;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.modal-close:hover {
+    background: var(--accent-color);
+    transform: rotate(90deg);
+}
+
+.modal-gallery-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+    background: #f0f0f0;
+    flex: 1;
+    min-height: 400px;
+}
+
+.modal-gallery {
+    position: relative;
+    width: 100%;
+    max-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-gallery-item {
+    display: none;
+    width: 100%;
+    height: 100%;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-gallery-item.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-gallery-item img {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    z-index: 1002;
+}
+
+.modal-nav:hover {
+    background: var(--accent-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.modal-nav-prev {
+    left: 10px;
+}
+
+.modal-nav-next {
+    right: 10px;
+}
+
+.modal-gallery-info {
+    padding: 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.modal-gallery-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+.modal-gallery-info p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.modal-counter {
+    margin-top: 10px;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    .gallery-modal-content {
+        width: 95vw;
+        max-height: 95vh;
+    }
+    
+    .modal-gallery-wrapper {
+        min-height: 300px;
+    }
+    
+    .modal-gallery-item img {
+        max-height: 350px;
+    }
+    
+    .modal-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
