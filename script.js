@@ -487,6 +487,211 @@ window.addEventListener('load', manageHolidayDecorations);
 
     trackContactClicks();
 
+    /* =========================================
+    7.1. MODAL GALERII (ZLECENIA)
+    ========================================= */
+    const galleryModal = document.getElementById('gallery-modal');
+    const serviceItem1 = document.getElementById('service-item-1');
+    const serviceItem2 = document.getElementById('service-item-2');
+    const serviceItem3 = document.getElementById('service-item-3');
+    const serviceItem4 = document.getElementById('service-item-4');
+    const serviceItem5 = document.getElementById('service-item-5');
+    const serviceItem6 = document.getElementById('service-item-6');
+    const serviceItem7 = document.getElementById('service-item-7');
+    const serviceItem8 = document.getElementById('service-item-8');
+    const serviceItem9 = document.getElementById('service-item-9');
+    const modalClose = document.querySelector('.modal-close');
+    const modalOverlay = document.querySelector('.gallery-modal-overlay');
+    const modalPrevBtn = document.querySelector('.modal-nav-prev');
+    const modalNextBtn = document.querySelector('.modal-nav-next');
+    const modalGalleryItems = document.querySelectorAll('.modal-gallery-item');
+    
+    let currentImageIndex = 0;
+    let galleryStartIndex = 0; // Indeks początkowy galerii
+    let galleryEndIndex = 3; // Indeks końcowy galerii
+    
+    function openGalleryModal(startIndex = 0, endIndex = 3) {
+        if (galleryModal) {
+            galleryStartIndex = startIndex;
+            galleryEndIndex = endIndex;
+            galleryModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            showModalImage(startIndex);
+        }
+    }
+    
+    function closeGalleryModal() {
+        if (galleryModal) {
+            galleryModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+    
+    function showModalImage(index) {
+        if (!modalGalleryItems.length) return;
+        
+        // Wrap around w ramach obecnej galerii
+        if (index > galleryEndIndex) {
+            currentImageIndex = galleryStartIndex;
+        } else if (index < galleryStartIndex) {
+            currentImageIndex = galleryEndIndex;
+        } else {
+            currentImageIndex = index;
+        }
+        
+        // Hide all items
+        modalGalleryItems.forEach(item => item.classList.remove('active'));
+        
+        // Show current item
+        const currentItem = modalGalleryItems[currentImageIndex];
+        currentItem.classList.add('active');
+        
+        // Update info
+        document.getElementById('modal-title').textContent = currentItem.dataset.title || '';
+        document.getElementById('modal-desc').textContent = currentItem.dataset.desc || '';
+        const displayIndex = currentImageIndex - galleryStartIndex + 1;
+        const totalItems = galleryEndIndex - galleryStartIndex + 1;
+        document.getElementById('modal-current').textContent = displayIndex;
+        document.getElementById('modal-total').textContent = totalItems;
+    }
+    
+    // Event listeners dla service-item-2 (Budowa domów)
+    if (serviceItem2) {
+        serviceItem2.style.cursor = 'pointer';
+        serviceItem2.addEventListener('click', () => openGalleryModal(0, 3));
+        serviceItem2.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openGalleryModal(0, 3);
+            }
+        });
+    }
+    
+    // Event listeners dla service-item-1 (Ławy i Fundamenty)
+    if (serviceItem1) {
+        serviceItem1.style.cursor = 'pointer';
+        serviceItem1.addEventListener('click', () => openGalleryModal(4, 6));
+        serviceItem1.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openGalleryModal(4, 6);
+            }
+        });
+    }
+    
+    // Event listeners dla service-item-6 (Izolacje i hydroizolacje)
+    if (serviceItem6) {
+        serviceItem6.style.cursor = 'pointer';
+        serviceItem6.addEventListener('click', () => openGalleryModal(7, 9));
+        serviceItem6.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openGalleryModal(7, 9);
+            }
+        });
+    }
+    
+    // Event listeners dla service-item-5 (Ściany murowane)
+    if (serviceItem5) {
+        serviceItem5.style.cursor = 'pointer';
+        serviceItem5.addEventListener('click', () => openGalleryModal(10, 12));
+        serviceItem5.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openGalleryModal(10, 12);
+            }
+        });
+    }
+    
+    // Event listeners dla service-item-3 (Mury oporowe i ogrodzenia)
+    if (serviceItem3) {
+        serviceItem3.style.cursor = 'pointer';
+        serviceItem3.addEventListener('click', () => openGalleryModal(13, 15));
+        serviceItem3.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openGalleryModal(13, 15);
+            }
+        });
+    }
+    
+    // Event listeners dla service-item-4 (Wiaty, garaże i pomieszczenia)
+    if (serviceItem4) {
+        serviceItem4.style.cursor = 'pointer';
+        serviceItem4.addEventListener('click', () => openGalleryModal(16, 18));
+        serviceItem4.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openGalleryModal(16, 18);
+            }
+        });
+    }
+    
+    // Event listeners dla service-item-7 (Kanalizacja)
+    if (serviceItem7) {
+        serviceItem7.style.cursor = 'pointer';
+        serviceItem7.addEventListener('click', () => openGalleryModal(19, 21));
+        serviceItem7.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openGalleryModal(19, 21);
+            }
+        });
+    }
+    
+    // Event listeners dla service-item-8 (Woda użytkowa)
+    if (serviceItem8) {
+        serviceItem8.style.cursor = 'pointer';
+        serviceItem8.addEventListener('click', () => openGalleryModal(22, 24));
+        serviceItem8.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openGalleryModal(22, 24);
+            }
+        });
+    }
+    
+    // Event listeners dla service-item-9 (Elektryka)
+    if (serviceItem9) {
+        serviceItem9.style.cursor = 'pointer';
+        serviceItem9.addEventListener('click', () => openGalleryModal(25, 27));
+        serviceItem9.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openGalleryModal(25, 27);
+            }
+        });
+    }
+    
+    if (modalClose) {
+        modalClose.addEventListener('click', closeGalleryModal);
+    }
+    
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', closeGalleryModal);
+    }
+    
+    if (modalPrevBtn) {
+        modalPrevBtn.addEventListener('click', () => showModalImage(currentImageIndex - 1));
+    }
+    
+    if (modalNextBtn) {
+        modalNextBtn.addEventListener('click', () => showModalImage(currentImageIndex + 1));
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!galleryModal || !galleryModal.classList.contains('active')) return;
+        
+        if (e.key === 'ArrowLeft') {
+            showModalImage(currentImageIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+            showModalImage(currentImageIndex + 1);
+        } else if (e.key === 'Escape') {
+            closeGalleryModal();
+        }
+    });
+
     // B. Cookie Consent (RODO)
     const GA_MEASUREMENT_ID = 'G-KXK83XGTXB';
     const GA_ADS_ID = 'AW-17698648399';
