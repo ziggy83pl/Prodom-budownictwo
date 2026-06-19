@@ -6,7 +6,7 @@ https://zamow-budowe.pages.dev/wspolpraca.html
 https://zamow-budowe.pages.dev/zlecenia.html
 https://zamow-budowe.pages.dev/praca.html
 https://zamow-budowe.pages.dev/oferta-murarz.html
-https://zamow-budowe.pages.dev/oferta-pomocnik.html
+https://zamow-budowe.pages.dev/oferta-pracownik.html
 https://zamow-budowe.pages.dev/oferta-zbrojarz.html
 https://zamow-budowe.pages.dev/wspolpraca-architekt.html
 https://zamow-budowe.pages.dev/wspolpraca-geodeta.html
