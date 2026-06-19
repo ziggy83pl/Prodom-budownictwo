@@ -1,5 +1,5 @@
 // service-worker.js
-const CACHE_NAME = 'prodom-cache-v12';
+const CACHE_NAME = 'prodom-cache-v13';
 const urlsToCache = [
 './',
 './index.html',

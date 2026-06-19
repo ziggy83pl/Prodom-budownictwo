@@ -1,4 +1,4 @@
-﻿/* === 1. ZMIENNE I RESET === */
+/* === 1. ZMIENNE I RESET === */
 :root {
     /* Kolorystyka: Ultra-Minimalist */
     --bg-white: #ffffff;
@@ -26,6 +26,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
     overflow-x: hidden;
     width: 100%;
 }
@@ -443,7 +444,7 @@ img { max-width: 100%; height: auto; display: block; }
     position: absolute;
     inset: 0;
     /* Reduced overlay opacity so background image is more visible */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/strop2.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/strop2.webp');
     background-size: cover;
     background-position: center;
     z-index: -1;
