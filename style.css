@@ -1349,7 +1349,6 @@ img { max-width: 100%; height: auto; display: block; }
     .no-fade-mobile.is-visible {
         opacity: 1 !important;
         transform: none !important;
-        transition: none !important;
     }
 }
 
@@ -1363,20 +1362,22 @@ img { max-width: 100%; height: auto; display: block; }
     margin-top: 30px;
 }
 
-.trusted-logos img {
-    height: 70px;
-    width: 70px;
-    object-fit: contain;
-    border-radius: 50%;
+.trusted-logos img,
+#global-trusted-logos img {
+    height: 70px !important;
+    width: 70px !important;
+    object-fit: contain !important;
+    border-radius: 50% !important;
     background-color: #ffffff;
-    padding: 12px;
+    padding: 4px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     filter: grayscale(0%);
     opacity: 0.9;
     transition: all 0.3s ease;
 }
 
-.trusted-logos img:hover {
+.trusted-logos img:hover,
+#global-trusted-logos img:hover {
     filter: grayscale(0%);
     opacity: 1;
     transform: scale(1.1);
