@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿// Zmienna globalna dla zdarzenia instalacji PWA
+﻿﻿﻿﻿﻿﻿// Zmienna globalna dla zdarzenia instalacji PWA
 let deferredPrompt;
 
 function isAppInstalled() {
@@ -792,6 +792,22 @@ window.addEventListener('load', manageHolidayDecorations);
                 }
             }, 2500); // Powtarzaj co 2.5 sekundy
         }
+    }
+
+    /* =========================================
+       9. OBSŁUGA DYNAMICZNEGO NAGŁÓWKA (SCROLLED)
+       ========================================= */
+    const headerEl = document.getElementById('header');
+    if (headerEl) {
+        const checkScroll = () => {
+            if (window.scrollY > 50) {
+                headerEl.classList.add('scrolled');
+            } else {
+                headerEl.classList.remove('scrolled');
+            }
+        };
+        checkScroll();
+        window.addEventListener('scroll', checkScroll);
     }
 
 }); // KONIEC DOMContentLoaded
