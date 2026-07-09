@@ -1384,6 +1384,47 @@ img { max-width: 100%; height: auto; display: block; }
     box-shadow: 0 0 20px var(--hover-color);
 }
 
+/* Poprawka dla wizytówek marquee - zapobieganie spłaszczaniu logotypów i ucinaniu tooltipów */
+#global-trusted-logos .logos-marquee {
+    overflow: hidden !important;
+    padding: 10px 0 !important; /* Domyślnie mały padding na telefonach */
+    display: flex !important;
+    align-items: center !important;
+}
+
+#global-trusted-logos .logo-tooltip {
+    flex-shrink: 0 !important;
+}
+
+#global-trusted-logos .logos-track {
+    display: flex !important;
+}
+
+#global-trusted-logos .logos-track .logo-tooltip {
+    margin: 0 15px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Wyłącz dymki na telefonach i małych ekranach */
+@media (max-width: 767px) {
+    #global-trusted-logos .logo-tooltip::before,
+    #global-trusted-logos .logo-tooltip::after {
+        display: none !important;
+    }
+}
+
+/* Włącz duży padding i dymki na komputerach (ekrany >= 768px) */
+@media (min-width: 768px) {
+    #global-trusted-logos .logos-marquee {
+        padding: 50px 0 15px 0 !important; /* Zwiększony padding na komputerach */
+        align-items: flex-end !important;
+    }
+    #global-trusted-logos .logo-tooltip::before,
+    #global-trusted-logos .logo-tooltip::after {
+        z-index: 9999 !important;
+    }
+}
+
 /* Tooltip (Dymek) */
 .logo-tooltip { position: relative; display: inline-block; }
 .logo-tooltip::before, .logo-tooltip::after {
