@@ -584,7 +584,8 @@ img { max-width: 100%; height: auto; display: block; }
 /* Specific background images for services */
 .header-construction { background-image: url('images/budowa.webp'); }
 .header-supervision { background-image: url('images/nadzur.jpg'); }
-.header-finishing { background-image: url('images/wykonczenie.jpg'); }
+.header-finishing,
+.header-installations { background-image: url('images/elektryka2.webp'); }
 
 @media (min-width: 768px) {
     .about-grid { grid-template-columns: 1fr 1fr; align-items: center; }
