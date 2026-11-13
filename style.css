@@ -1927,3 +1927,41 @@ body.holiday-mode .header { top: 50px !important; }
         font-size: 1rem;
     }
 }
+
+/* === UX: kotwice, fokus, FAQ, pasek mobilny, powrót na górę === */
+section[id] { scroll-margin-top: 90px; }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 3px solid var(--accent-color); outline-offset: 3px;
+}
+details > summary::-webkit-details-marker { display: none; }
+details > summary span { transition: transform .25s; }
+details[open] > summary span { transform: rotate(45deg); }
+details[open] { border-color: var(--accent-color) !important; }
+
+.ux-top {
+    position: fixed; right: 16px; bottom: 20px; z-index: 900;
+    width: 46px; height: 46px; border: 0; border-radius: 50%;
+    background: var(--dark-bg); color: #fff; font-size: 1.1rem; cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,.25);
+    opacity: 0; visibility: hidden; transform: translateY(10px); transition: .25s;
+}
+.ux-top.show { opacity: 1; visibility: visible; transform: none; }
+.ux-callbar { display: none; }
+@media (max-width: 767px) {
+    .ux-callbar {
+        display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 950;
+        background: var(--dark-bg); box-shadow: 0 -4px 16px rgba(0,0,0,.25);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+    .ux-callbar a {
+        flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+        padding: 14px 8px; font-weight: 700; color: #fff; text-decoration: none;
+    }
+    .ux-callbar a:first-child { background: var(--accent-color); color: #111; }
+    body { padding-bottom: 56px; }
+    .ux-top { bottom: 72px; }
+    .cookie-banner { bottom: 56px !important; z-index: 960; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

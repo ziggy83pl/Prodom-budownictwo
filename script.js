@@ -811,3 +811,24 @@ window.addEventListener('load', manageHolidayDecorations);
     }
 
 }); // KONIEC DOMContentLoaded
+
+// UX: pasek "Zadzwoń / Wycena" na mobile + przycisk powrotu na górę
+(function () {
+    const en = document.documentElement.lang === 'en';
+    const home = en ? 'index-en.html' : 'index.html';
+    const bar = document.createElement('nav');
+    bar.className = 'ux-callbar';
+    bar.setAttribute('aria-label', en ? 'Quick contact' : 'Szybki kontakt');
+    bar.innerHTML = `<a href="tel:+48574322909"><i class="fas fa-phone"></i> ${en ? 'Call' : 'Zadzwoń'}</a>` +
+        `<a href="${home}#contact"><i class="fas fa-file-signature"></i> ${en ? 'Free quote' : 'Darmowa wycena'}</a>`;
+    document.body.appendChild(bar);
+
+    const top = document.createElement('button');
+    top.className = 'ux-top';
+    top.type = 'button';
+    top.setAttribute('aria-label', en ? 'Back to top' : 'Wróć na górę');
+    top.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    top.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    document.body.appendChild(top);
+    window.addEventListener('scroll', () => top.classList.toggle('show', window.scrollY > 600), { passive: true });
+})();
